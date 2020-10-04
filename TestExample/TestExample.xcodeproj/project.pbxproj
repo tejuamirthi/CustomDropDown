@@ -13,6 +13,8 @@
 		6055FCEF2529F78D0096A0FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6055FCED2529F78D0096A0FD /* Main.storyboard */; };
 		6055FCF12529F7900096A0FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6055FCF02529F7900096A0FD /* Assets.xcassets */; };
 		6055FCF42529F7900096A0FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6055FCF22529F7900096A0FD /* LaunchScreen.storyboard */; };
+		6055FD2D252A0FF70096A0FD /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6055FD2C252A0FF70096A0FD /* CustomDropDown.framework */; };
+		6055FD2E252A0FF70096A0FD /* CustomDropDown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6055FD2C252A0FF70096A0FD /* CustomDropDown.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,6 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6055FD2E252A0FF70096A0FD /* CustomDropDown.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +40,7 @@
 		6055FCF02529F7900096A0FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6055FCF32529F7900096A0FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6055FCF52529F7900096A0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6055FD2C252A0FF70096A0FD /* CustomDropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CustomDropDown.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6055FD2D252A0FF70096A0FD /* CustomDropDown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,7 @@
 		6055FCFB2529FB080096A0FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6055FD2C252A0FF70096A0FD /* CustomDropDown.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

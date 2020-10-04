@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import CustomDropDown
+import CustomDropDown
 
 class ViewController: UIViewController {
 
@@ -15,15 +15,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
-//        let newView = ccp.getDropDownView()
-//        view.addSubview(newView)
-//        newView.translatesAutoresizingMaskIntoConstraints = false
-//        newView.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
-//        newView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        newView.backgroundColor = .red
+        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
+        let newView = ccp.getDropDownView()
+        view.addSubview(newView)
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        newView.widthAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+        newView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        newView.backgroundColor = .red
         // Do any additional setup after loading the view.
     }
 
@@ -46,24 +46,24 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
-//    
-//    func viewForHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        nil
-//    }
-//    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        1
-//    }
-//    
-//    func overrideDropDownView() -> UIView? {
-//        nil
-//    }
-//    
-//}
+extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func viewForHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func overrideDropDownView() -> UIView? {
+        nil
+    }
+    
+}
 
 extension UIView {
     func addAnchors(top: NSLayoutYAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, left: NSLayoutXAxisAnchor? = nil, right: NSLayoutXAxisAnchor? = nil, padding: CGFloat = 5, widthConstraint: NSLayoutConstraint? = nil, heightConstraint: NSLayoutConstraint? = nil) {
