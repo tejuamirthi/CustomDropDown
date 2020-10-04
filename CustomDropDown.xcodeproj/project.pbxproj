@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; };
 		6055FCBC2529AEC80096A0FD /* CustomDropDown.h in Headers */ = {isa = PBXBuildFile; fileRef = 6055FCBA2529AEC80096A0FD /* CustomDropDown.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		600DFEAA2529BA4200206E64 /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
 		6055FCB72529AEC80096A0FD /* CustomDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6055FCBA2529AEC80096A0FD /* CustomDropDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDropDown.h; sourceTree = "<group>"; };
 		6055FCBB2529AEC80096A0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +50,28 @@
 		6055FCB92529AEC80096A0FD /* CustomDropDown */ = {
 			isa = PBXGroup;
 			children = (
+				6055FCD82529B1C80096A0FD /* Presenter */,
+				6055FCD72529B1AA0096A0FD /* View */,
 				6055FCBA2529AEC80096A0FD /* CustomDropDown.h */,
 				6055FCBB2529AEC80096A0FD /* Info.plist */,
 			);
 			path = CustomDropDown;
+			sourceTree = "<group>";
+		};
+		6055FCD72529B1AA0096A0FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				600DFEAA2529BA4200206E64 /* CustomDropDown.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6055FCD82529B1C80096A0FD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +117,7 @@
 				TargetAttributes = {
 					6055FCB62529AEC80096A0FD = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -131,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */,
+				600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +285,7 @@
 		6055FCC02529AEC80096A0FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -275,6 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tejuamirthi.CustomDropDown;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -283,6 +310,7 @@
 		6055FCC12529AEC80096A0FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
