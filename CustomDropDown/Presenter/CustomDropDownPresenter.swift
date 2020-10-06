@@ -9,13 +9,16 @@
 import UIKit
 
 public protocol CustomDropDownDataSource: class {
-    func viewForHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    func numberOfSections(in tableView: UITableView) -> Int
     func overrideDropDownView() -> UIView?
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell?
 }
 
-extension CustomDropDownDataSource {
+public extension CustomDropDownDataSource where Self: NSObject {
     func overrideDropDownView() -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell? {
         return nil
     }
 }
@@ -65,10 +68,6 @@ public class CustomDropDownPresenter<T>: NSObject, UITableViewDataSource, UITabl
         cell.contentView.backgroundColor = .gray
         label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
-    }
-    
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return self.datasource?.numberOfSections(in: tableView) ?? 1
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

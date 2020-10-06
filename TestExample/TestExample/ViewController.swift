@@ -45,18 +45,9 @@ class ViewController: UIViewController {
 //}
 
 extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
-    func overrideDropDownView() -> UIView? {
-        nil
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    
-    func viewForHeader(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        nil
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }

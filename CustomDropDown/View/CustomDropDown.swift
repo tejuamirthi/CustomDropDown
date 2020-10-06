@@ -33,7 +33,18 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        getStringLabelCell(indexPath: indexPath)
+        if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath) {
+            return cell
+        }
+        return getStringLabelCell(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let presenter = self.presenter else {
+            return
+        }
+        self.dropDownDisplayView.title.attributedText = NSAttributedString(string: presenter.items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath)
     }
 
     func getStringLabelCell(indexPath: IndexPath) -> UITableViewCell {
