@@ -27,17 +27,34 @@ class DropDownDisplayView: UIView {
     }
 }
 
-class CustomDropDownView<T>: UIView {
+class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter?.items.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        getStringLabelCell(indexPath: indexPath)
+    }
+
+    func getStringLabelCell(indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let label = UILabel()
+        label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        cell.contentView.addSubview(label)
+        cell.contentView.backgroundColor = .gray
+        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        return cell
+    }
     
     var dropDown: CustomDropDown<T>?
     var isOpen = true
-    weak var delegate: CustomDropDownPresenter<T>?
+    var presenter: CustomDropDownPresenter<T>?
     var heightConstraint = NSLayoutConstraint()
     var dropDownDisplayView: DropDownDisplayView!
     
     init(delegate: CustomDropDownPresenter<T>) {
         super.init(frame: .zero)
-        self.delegate = delegate
+        self.presenter = delegate
         if let view = delegate.overrideDropDownView() as? DropDownDisplayView {
             dropDownDisplayView = view
         } else{
@@ -53,11 +70,7 @@ class CustomDropDownView<T>: UIView {
     }
     
     func setupDropDown() {
-        guard let delegate = self.delegate else {
-            return
-        }
-        dropDown = CustomDropDown<T>(customDropDownPresenter: delegate)
-//        self.addSubview(dropDown!)
+        dropDown = CustomDropDown<T>(dropDownView: self)
     }
     
     required init?(coder: NSCoder) {
@@ -97,9 +110,9 @@ class CustomDropDownView<T>: UIView {
             isOpen = false
             NSLayoutConstraint.deactivate([heightConstraint])
             var height: CGFloat = 200
-//            if height > dropDown.tableView.contentSize.height {
-//                height = dropDown.tableView.contentSize.height
-//            }
+            if height > dropDown.tableView.contentSize.height {
+                height = dropDown.tableView.contentSize.height
+            }
             self.superview?.bringSubviewToFront(dropDown)
             self.heightConstraint.constant = height
             NSLayoutConstraint.activate([heightConstraint])
@@ -126,10 +139,10 @@ class CustomDropDown<T>: UIView {
     
     var tableView: UITableView = UITableView()
     
-    init(customDropDownPresenter: CustomDropDownPresenter<T>) {
+    init(dropDownView: CustomDropDownView<T>) {
         super.init(frame: .zero)
-        tableView.dataSource = customDropDownPresenter.datasource as? UITableViewDataSource
-        tableView.delegate = customDropDownPresenter.delegate as? UITableViewDelegate
+        tableView.dataSource = dropDownView
+        tableView.delegate = dropDownView
         tableView.backgroundColor = .lightGray
         self.addSubview(tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
