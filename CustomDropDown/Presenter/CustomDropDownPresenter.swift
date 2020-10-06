@@ -10,11 +10,36 @@ import UIKit
 
 public protocol CustomDropDownDataSource: class {
     func overrideDropDownView() -> UIView?
+    func numberOfSections(in tableView: UITableView) -> Int?
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell?
 }
 
 public extension CustomDropDownDataSource where Self: NSObject {
     func overrideDropDownView() -> UIView? {
+        return nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int? {
         return nil
     }
     
@@ -31,7 +56,7 @@ public protocol CustomDropDownDelegate: class {
 //    open var title: String?
 //}
 
-public class CustomDropDownPresenter<T>: NSObject, UITableViewDataSource, UITableViewDelegate  {
+public class CustomDropDownPresenter<T>: NSObject {
     var items: [T]
     weak var datasource: CustomDropDownDataSource?
     weak var delegate: CustomDropDownDelegate?
@@ -51,37 +76,8 @@ public class CustomDropDownPresenter<T>: NSObject, UITableViewDataSource, UITabl
         return dropDown as UIView
     }
     
-    // MARK: - Datasource
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        35
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        cell.contentView.addSubview(label)
-        cell.contentView.backgroundColor = .gray
-        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        return cell
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-        //        return self.datasource?.viewForHeader(tableView, viewForHeaderInSection: section)
-    }
-    
     func overrideDropDownView() -> UIView? {
         return datasource?.overrideDropDownView()
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dropDown.dropDownDisplayView.title.attributedText = NSAttributedString(string: items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        delegate?.tableView(tableView, didSelectRowAt: indexPath)
     }
 }
 

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		603948C8252CD21D00C68609 /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603948C6252CD21500C68609 /* CustomDropDown.framework */; };
-		603948C9252CD21D00C68609 /* CustomDropDown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 603948C6252CD21500C68609 /* CustomDropDown.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		603948D4252CE35F00C68609 /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603948D2252CE35A00C68609 /* CustomDropDown.framework */; };
+		603948D5252CE35F00C68609 /* CustomDropDown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 603948D2252CE35A00C68609 /* CustomDropDown.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6055FCE82529F78D0096A0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCE72529F78D0096A0FD /* AppDelegate.swift */; };
 		6055FCEA2529F78D0096A0FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCE92529F78D0096A0FD /* SceneDelegate.swift */; };
 		6055FCEC2529F78D0096A0FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCEB2529F78D0096A0FD /* ViewController.swift */; };
@@ -24,7 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				603948C9252CD21D00C68609 /* CustomDropDown.framework in Embed Frameworks */,
+				603948D5252CE35F00C68609 /* CustomDropDown.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,7 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		603948C6252CD21500C68609 /* CustomDropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CustomDropDown.framework; sourceTree = "<group>"; };
+		603948D2252CE35A00C68609 /* CustomDropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CustomDropDown.framework; sourceTree = "<group>"; };
 		6055FCE42529F78D0096A0FD /* TestExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6055FCE72529F78D0096A0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6055FCE92529F78D0096A0FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				603948C8252CD21D00C68609 /* CustomDropDown.framework in Frameworks */,
+				603948D4252CE35F00C68609 /* CustomDropDown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 		6055FCFB2529FB080096A0FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				603948C6252CD21500C68609 /* CustomDropDown.framework */,
+				603948D2252CE35A00C68609 /* CustomDropDown.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

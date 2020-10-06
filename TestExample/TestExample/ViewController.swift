@@ -48,8 +48,19 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = UIView()
+        let label = UILabel()
+        label.attributedText = NSAttributedString(string: "Headersection", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        cell.backgroundColor = .gray
+        cell.addSubview(label)
+        label.addAnchors(top: cell.topAnchor, bottom: cell.bottomAnchor, left: cell.leftAnchor, right: cell.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        return cell
     }
 }
 

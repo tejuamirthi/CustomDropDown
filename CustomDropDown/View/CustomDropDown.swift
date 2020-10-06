@@ -28,8 +28,31 @@ class DropDownDisplayView: UIView {
 }
 
 class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let sections = presenter?.datasource?.numberOfSections(in: tableView) {
+            return sections
+        }
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        presenter?.datasource?.tableView(tableView, heightForHeaderInSection: section) ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return presenter?.datasource?.tableView(tableView, viewForHeaderInSection: section)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return presenter?.datasource?.tableView(tableView, heightForRowAt: indexPath) ?? UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.items.count ?? 0
+        if let rows = presenter?.datasource?.tableView(tableView, numberOfRowsInSection: section) {
+            return rows
+        }
+        return presenter?.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
