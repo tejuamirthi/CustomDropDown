@@ -11,7 +11,7 @@ import CustomDropDown
 
 class ViewController: UIViewController {
 
-    let items = ["first name", "second name", "third name"]
+    let items = ["first new hey", "second name", "third name"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +26,29 @@ class ViewController: UIViewController {
         newView.backgroundColor = .red
         // Do any additional setup after loading the view.
     }
-
-
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: items[indexPath.row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        cell.contentView.addSubview(label)
-        cell.contentView.backgroundColor = .gray
-        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        return cell
-    }
-}
+//extension ViewController: UITableViewDataSource, UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        items.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell()
+//        let label = UILabel()
+//        label.attributedText = NSAttributedString(string: items[indexPath.row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+//        cell.contentView.addSubview(label)
+//        cell.contentView.backgroundColor = .gray
+//        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+//        return cell
+//    }
+//}
 
 extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+    func overrideDropDownView() -> UIView? {
+        nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
@@ -58,11 +60,6 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    
-    func overrideDropDownView() -> UIView? {
-        nil
-    }
-    
 }
 
 extension UIView {
