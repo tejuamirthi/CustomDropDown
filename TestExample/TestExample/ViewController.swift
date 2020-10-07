@@ -57,10 +57,23 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
         let cell = UIView()
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "Headersection", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        cell.backgroundColor = .gray
+        cell.backgroundColor = .lightGray
         cell.addSubview(label)
         label.addAnchors(top: cell.topAnchor, bottom: cell.bottomAnchor, left: cell.leftAnchor, right: cell.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
+    }
+    
+    func overrideDropDownView() -> UIView? {
+        let customView = UIView()
+        let title = UILabel()
+        let button = UIImageView()
+        customView.addSubview(title)
+        customView.addSubview(button)
+        button.image = UIImage(named: "arrowtriangle.down.fill")
+        title.addAnchors(top: customView.topAnchor, bottom: customView.bottomAnchor, left: customView.leftAnchor, right: button.leftAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        title.attributedText = NSAttributedString(string: "My Custom hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        button.addAnchors(top: customView.topAnchor, bottom: customView.bottomAnchor, left: nil, right: customView.rightAnchor, padding: 8, widthConstraint: button.widthAnchor.constraint(equalToConstant: 60), heightConstraint: nil)
+        return customView
     }
 }
 
