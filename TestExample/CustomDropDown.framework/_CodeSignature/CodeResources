@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/CustomDropDown-Swift.h</key>
 		<data>
-		5y7Qu7gLdEHIeS1XQawGLfsJFJk=
+		Cy84ORClI02VCyticSZyYAOR44M=
 		</data>
 		<key>Headers/CustomDropDown.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/CustomDropDown.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		/YoCqi+Gq9/NY0ldpc2JjnXavto=
+		OsqlqorGlYcFqBnq4V3iQWHiNkE=
 		</data>
 		<key>Modules/CustomDropDown.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/CustomDropDown.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		/YoCqi+Gq9/NY0ldpc2JjnXavto=
+		OsqlqorGlYcFqBnq4V3iQWHiNkE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,7 +43,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/XeZMuL6e1Ldg5pm42jZz0TC1KGzbZIDm9rF0EMTENE=
+			5M4PTuLaCqf4fpgITF0WrV68zIzqT93n8EU+KGTp7CU=
 			</data>
 		</dict>
 		<key>Headers/CustomDropDown.h</key>
@@ -64,7 +64,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kpp6wU/iRXE34voPMGGs5F6Xf8KXfGddSLl8y4Y0jbg=
+			BT7mQSXSl6PClqWvj7u+sH1XjNhI7bplL9dDqBzHtSE=
 			</data>
 		</dict>
 		<key>Modules/CustomDropDown.swiftmodule/x86_64.swiftdoc</key>
@@ -78,7 +78,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kpp6wU/iRXE34voPMGGs5F6Xf8KXfGddSLl8y4Y0jbg=
+			BT7mQSXSl6PClqWvj7u+sH1XjNhI7bplL9dDqBzHtSE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

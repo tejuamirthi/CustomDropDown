@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DropDownDisplayView: UIView {
+public class DropDownDisplayView: UIView {
     open var title: UILabel!
     open var button: UIButton!
     init() {
@@ -66,7 +66,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let presenter = self.presenter else {
             return
         }
-        self.dropDownDisplayView.title.attributedText = NSAttributedString(string: presenter.items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+//        self.dropDownDisplayView.title.attributedText = NSAttributedString(string: presenter.items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath)
     }
 
@@ -84,12 +84,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     var isOpen = true
     var presenter: CustomDropDownPresenter<T>?
     var heightConstraint = NSLayoutConstraint()
-    var dropDownDisplayView: DropDownDisplayView!
+    var dropDownDisplayView: UIView!
     
     init(delegate: CustomDropDownPresenter<T>) {
         super.init(frame: .zero)
         self.presenter = delegate
-        if let view = delegate.overrideDropDownView() as? DropDownDisplayView {
+        if let view = delegate.overrideDropDownView() {
             dropDownDisplayView = view
         } else{
             setupDropDownDisplayView()
