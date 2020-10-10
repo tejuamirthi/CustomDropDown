@@ -10,6 +10,9 @@ import UIKit
 
 public protocol CustomDropDownDataSource: class {
     func overrideDropDownView() -> UIView?
+    func dropDownWidth() -> CGFloat?
+    func dropDownTag() -> Int
+    func dropDownLeftRightPadding() -> UIEdgeInsets
     func numberOfSections(in tableView: UITableView) -> Int?
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -21,6 +24,18 @@ public protocol CustomDropDownDataSource: class {
 public extension CustomDropDownDataSource where Self: NSObject {
     func overrideDropDownView() -> UIView? {
         return nil
+    }
+    
+    func dropDownWidth() -> CGFloat? {
+        return nil
+    }
+    
+    func dropDownTag() -> Int {
+        return 999
+    }
+    
+    func dropDownLeftRightPadding() -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int? {

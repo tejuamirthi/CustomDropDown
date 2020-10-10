@@ -123,12 +123,21 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let dropDown = self.dropDown else {
             return
         }
+        if let tag = self.presenter?.datasource?.dropDownTag(), let view = viewWithTag(tag) {
+            view.removeFromSuperview()
+        }
         self.superview?.addSubview(dropDown)
         self.superview?.bringSubviewToFront(dropDown)
         dropDown.translatesAutoresizingMaskIntoConstraints = false
-        dropDown.topAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        dropDown.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        dropDown.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2 - 30).isActive = true
+        let width = self.presenter?.datasource?.dropDownWidth()
+        let dropDownLeftRightPadding: UIEdgeInsets = self.presenter?.datasource?.dropDownLeftRightPadding() ?? UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        dropDown.topAnchor.constraint(equalTo: self.bottomAnchor, constant: -dropDownLeftRightPadding.top).isActive = true
+        dropDown.leftAnchor.constraint(equalTo: self.leftAnchor, constant: dropDownLeftRightPadding.left).isActive = true
+        if let dropDownWidth = width {
+            dropDown.widthAnchor.constraint(equalToConstant: dropDownWidth).isActive = true
+        } else {
+            dropDown.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -dropDownLeftRightPadding.right).isActive = true
+        }
         heightConstraint = dropDown.heightAnchor.constraint(equalToConstant: 0)
     }
     
