@@ -16,8 +16,7 @@
 		60A07349252F7F0E00861A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A07347252F7F0E00861A46 /* Main.storyboard */; };
 		60A0734B252F7F1100861A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60A0734A252F7F1100861A46 /* Assets.xcassets */; };
 		60A0734E252F7F1100861A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A0734C252F7F1100861A46 /* LaunchScreen.storyboard */; };
-		60A07353252F812000861A46 /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; };
-		60A07354252F812000861A46 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; };
+		60A95B382532CABE00222D5B /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6055FCB72529AEC80096A0FD /* CustomDropDown.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60A95B382532CABE00222D5B /* CustomDropDown.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +60,7 @@
 				6055FCB92529AEC80096A0FD /* CustomDropDown */,
 				60A07340252F7F0E00861A46 /* Example */,
 				6055FCB82529AEC80096A0FD /* Products */,
+				60A95B372532CABE00222D5B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +112,13 @@
 				60A0734F252F7F1100861A46 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		60A95B372532CABE00222D5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,8 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60A07353252F812000861A46 /* CustomDropDownPresenter.swift in Sources */,
-				60A07354252F812000861A46 /* CustomDropDown.swift in Sources */,
 				60A07346252F7F0E00861A46 /* ViewController.swift in Sources */,
 				60A07342252F7F0E00861A46 /* AppDelegate.swift in Sources */,
 				60A07344252F7F0E00861A46 /* SceneDelegate.swift in Sources */,
