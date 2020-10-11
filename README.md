@@ -19,7 +19,9 @@ Do this command with terminal.
 $ carthage update
 ```
 
-Then, You need to add `CustomDropDown.framework` to your project.
+Then, You need to add `CustomDropDown.framework` to your project. 
+
+[Refer here for step by step compilation of adding frameworks via carthage](https://github.com/Carthage/Carthage)
 
 
 # Basic
