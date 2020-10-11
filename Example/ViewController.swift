@@ -66,13 +66,13 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     func overrideDropDownView() -> UIView? {
         let customView = UIView()
         let title = UILabel()
-        let button = UIImageView()
+        let button = UIImageView(image: UIImage(named: "arrow-down"))
         customView.addSubview(title)
         customView.addSubview(button)
-        button.image = UIImage(named: "arrowtriangle.down.fill")?.withTintColor(.gray)
         title.addAnchors(top: customView.topAnchor, bottom: customView.bottomAnchor, left: customView.leftAnchor, right: button.leftAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         title.attributedText = NSAttributedString(string: "My Custom hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        button.addAnchors(top: customView.topAnchor, bottom: customView.bottomAnchor, left: nil, right: customView.rightAnchor, padding: 8, widthConstraint: button.widthAnchor.constraint(equalToConstant: 60), heightConstraint: nil)
+        button.addAnchors(top: nil, bottom: nil, left: nil, right: customView.rightAnchor, padding: 16, widthConstraint: button.widthAnchor.constraint(equalToConstant: 32), heightConstraint: button.heightAnchor.constraint(equalToConstant: 32))
+        button.centerYAnchor.constraint(equalTo: customView.centerYAnchor).isActive = true
         return customView
     }
 }
