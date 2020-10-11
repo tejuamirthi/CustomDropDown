@@ -1,0 +1,11 @@
+framework module CustomDropDown {
+  umbrella header "CustomDropDown.h"
+
+  export *
+  module * { export * }
+}
+
+module CustomDropDown.Swift {
+    header "CustomDropDown-Swift.h"
+    requires objc
+}
