@@ -12,6 +12,7 @@ public protocol CustomDropDownDataSource: class {
     func overrideDropDownView() -> UIView?
     func dropDownWidth() -> CGFloat?
     func dropDownTag() -> Int
+    func selectedLabelTag() -> Int
     func dropDownLeftRightPadding() -> UIEdgeInsets
     func numberOfSections(in tableView: UITableView) -> Int?
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
@@ -32,6 +33,10 @@ public extension CustomDropDownDataSource where Self: NSObject {
     
     func dropDownTag() -> Int {
         return 999
+    }
+    
+    func selectedLabelTag() -> Int {
+        return 9999
     }
     
     func dropDownLeftRightPadding() -> UIEdgeInsets {
@@ -64,7 +69,18 @@ public extension CustomDropDownDataSource where Self: NSObject {
 }
 
 public protocol CustomDropDownDelegate: class {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any)
+}
+
+public extension CustomDropDownDelegate where Self: NSObject {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any) {
+        guard let text = data as? String else {
+            return
+        }
+        if let label = displayView.viewWithTag(tag) as? UILabel {
+            label.text = text
+        }
+    }
 }
 
 //class DropDownItem: UIView {

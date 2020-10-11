@@ -11,14 +11,15 @@ import UIKit
 public class DropDownDisplayView: UIView {
     open var title: UILabel!
     open var button: UIButton!
-    init() {
+    init(tag: Int) {
         super.init(frame: .zero)
         title = UILabel()
         button = UIButton()
         self.addSubview(title)
         self.addSubview(button)
+        title.tag = tag
         title.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: button.leftAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        title.attributedText = NSAttributedString(string: "Select-hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        title.attributedText = NSAttributedString(string: "Select-hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         button.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: title.rightAnchor, right: self.rightAnchor, padding: 8, widthConstraint: button.widthAnchor.constraint(equalToConstant: 60), heightConstraint: button.heightAnchor.constraint(equalToConstant: 32))
     }
     
@@ -66,8 +67,9 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let presenter = self.presenter else {
             return
         }
-//        self.dropDownDisplayView.title.attributedText = NSAttributedString(string: presenter.items[indexPath.row] as? String ?? "Hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath)
+        let tag = presenter.datasource?.selectedLabelTag() ?? 9999
+        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, tag: tag, data: presenter.items[indexPath.row])
+        self.toggleDropDown()
     }
 
     func getStringLabelCell(indexPath: IndexPath) -> UITableViewCell {
@@ -100,7 +102,8 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func setupDropDownDisplayView() {
-        dropDownDisplayView = DropDownDisplayView()
+        let tag = presenter?.datasource?.selectedLabelTag() ?? 9999
+        dropDownDisplayView = DropDownDisplayView(tag: tag)
     }
     
     func setupDropDown() {
