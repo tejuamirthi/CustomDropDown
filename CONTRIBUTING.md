@@ -10,7 +10,7 @@ Follow these rules and guidelines while contributing to this repository.
 
 ## 2. Branches and PRs
 
-* No commits must be made to the `master` branch directly. The `master` branch shall only consist of the working code.
+* No commits must be made to the `main` branch directly. The `main` branch shall only consist of the working code.
 * Developers are expected to work on feature branches, and upon successful development and testing, a PR (pull request) must be opened to merge with master.
 * A branch must be named as either as the feature being implemented, or the issue being fixed. 
 
