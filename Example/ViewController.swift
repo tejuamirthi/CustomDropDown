@@ -45,36 +45,6 @@ class ViewController: UIViewController {
 //}
 
 extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = UIView()
-        let label = UILabel()
-        label.attributedText = NSAttributedString(string: "Headersection", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        cell.backgroundColor = .lightGray
-        cell.addSubview(label)
-        label.addAnchors(top: cell.topAnchor, bottom: cell.bottomAnchor, left: cell.leftAnchor, right: cell.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        return cell
-    }
-    
-    func overrideDropDownView() -> UIView? {
-        let customView = UIView()
-        let title = UILabel()
-        let button = UIImageView(image: UIImage(named: "arrow-down"))
-        customView.addSubview(title)
-        customView.addSubview(button)
-        title.addAnchors(top: customView.topAnchor, bottom: customView.bottomAnchor, left: customView.leftAnchor, right: button.leftAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        title.attributedText = NSAttributedString(string: "My Custom hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        button.addAnchors(top: nil, bottom: nil, left: nil, right: customView.rightAnchor, padding: 16, widthConstraint: button.widthAnchor.constraint(equalToConstant: 32), heightConstraint: button.heightAnchor.constraint(equalToConstant: 32))
-        button.centerYAnchor.constraint(equalTo: customView.centerYAnchor).isActive = true
-        return customView
-    }
 }
 
 extension UIView {
