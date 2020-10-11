@@ -34,6 +34,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 [Contributing guidelines](https://github.com/tejuamirthi/CustomDropDown/blob/main/CONTRIBUTING.md)
 
+### Feel free to raise new issues if you find any bugs or create feature requests
+
 # License
 Licensed under [Apache License 2.0
 ](https://github.com/tejuamirthi/CustomDropDown/blob/main/LICENSE)
