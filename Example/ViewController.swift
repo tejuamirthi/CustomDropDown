@@ -11,10 +11,11 @@ import CustomDropDown
 
 class ViewController: UIViewController {
 
-    let items = ["first new hey", "second name", "third name"]
+    let items = ["first new name", "second name", "third name"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemTeal
         let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
         let newView = ccp.getDropDownView()
         view.addSubview(newView)
@@ -45,6 +46,9 @@ class ViewController: UIViewController {
 //}
 
 extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any) {
+        
+    }
 }
 
 extension UIView {

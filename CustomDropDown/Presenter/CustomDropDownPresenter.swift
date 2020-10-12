@@ -69,11 +69,16 @@ public extension CustomDropDownDataSource where Self: NSObject {
 }
 
 public protocol CustomDropDownDelegate: class {
+    
+    // Use in case of custom Implementation
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any)
 }
 
 public extension CustomDropDownDelegate where Self: NSObject {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any) {
+        self.tableView(tableView, didSelectRowAt: indexPath, data: data)
         guard let text = data as? String else {
             return
         }
