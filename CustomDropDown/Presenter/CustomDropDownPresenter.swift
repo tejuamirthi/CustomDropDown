@@ -14,6 +14,7 @@ public protocol CustomDropDownDataSource: class {
     func dropDownTag() -> Int
     func selectedLabelTag() -> Int
     func dropDownLeftRightPadding() -> UIEdgeInsets
+    func imageName(tableView: UITableView, indexPath: IndexPath) -> String
     func numberOfSections(in tableView: UITableView) -> Int?
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -41,6 +42,10 @@ public extension CustomDropDownDataSource where Self: NSObject {
     
     func dropDownLeftRightPadding() -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    }
+    
+    func imageName(tableView: UITableView, indexPath: IndexPath) -> String {
+        return "arrow-down"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int? {

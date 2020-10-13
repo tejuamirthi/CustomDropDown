@@ -125,9 +125,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         }
         cell.title.numberOfLines = 0
         cell.title.text = presenter?.items[indexPath.row] as? String
-        if #available(iOS 13.0, *) {
-            cell.leftImageView.image = UIImage(systemName: "trash.fill")
-        } 
+        cell.leftImageView.image = UIImage(named: presenter?.datasource?.imageName(tableView: tableView, indexPath: indexPath) ?? "" , in: Bundle.main, compatibleWith: nil)
 //        let cell = UITableViewCell()
 //        let label = UILabel()
 //        label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
