@@ -24,6 +24,11 @@ public class DropDownDisplayView: UIView {
     }
 }
 
+public struct ImageLabelData {
+    var title: String?
+    var image: UIImage?
+}
+
 class DropDownImageLabelView: UITableViewCell {
     var title: UILabel!
     var leftImageView: UIImageView!
@@ -106,8 +111,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath) {
             return cell
+        } else if T.self == String.self {
+            return getStringLabelCell(tableView: tableView, indexPath: indexPath)
+        } else {
+            return getImageLabelCell(tableView: tableView, indexPath: indexPath)
         }
-        return getStringLabelCell(tableView: tableView, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -119,21 +127,26 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         self.toggleDropDown()
     }
 
-    func getStringLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DropDownImageLabelView") as? DropDownImageLabelView else {
+    func getImageLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DropDownImageLabelView") as? DropDownImageLabelView, let items = presenter?.items as? [ImageLabelData] else {
             return UITableViewCell()
         }
         cell.title.numberOfLines = 0
-        cell.title.text = presenter?.items[indexPath.row] as? String
-        if #available(iOS 13.0, *) {
-            cell.leftImageView.image = UIImage(systemName: "trash.fill")
-        } 
-//        let cell = UITableViewCell()
-//        let label = UILabel()
-//        label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-//        cell.contentView.addSubview(label)
-//        cell.contentView.backgroundColor = .gray
-//        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        cell.title.attributedText = NSAttributedString(string: items[indexPath.row].title ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        cell.leftImageView.image = items[indexPath.row].image
+        return cell
+    }
+
+    
+    func getStringLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UILabel") else {
+            return UITableViewCell()
+        }
+        let label = UILabel()
+        label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        cell.contentView.addSubview(label)
+        cell.contentView.backgroundColor = .gray
+        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
     }
     
@@ -146,6 +159,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     init(delegate: CustomDropDownPresenter<T>) {
         super.init(frame: .zero)
         self.presenter = delegate
+        setConfig()
         if let view = delegate.overrideDropDownView() {
             dropDownDisplayView = view
         } else{
@@ -154,6 +168,13 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         self.addSubview(dropDownDisplayView)
         dropDownDisplayView.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: nil)
         setupDropDown()
+        
+    }
+    
+    func setConfig() {
+        guard let config = self.presenter?.datasource?.config() else {
+            return
+        }
     }
     
     func setupDropDownDisplayView() {
@@ -245,6 +266,7 @@ class CustomDropDown<T>: UIView {
         tableView.dataSource = dropDownView
         tableView.delegate = dropDownView
         tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: "DropDownImageLabelView")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UILabel")
         tableView.backgroundColor = .lightGray
         self.addSubview(tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false

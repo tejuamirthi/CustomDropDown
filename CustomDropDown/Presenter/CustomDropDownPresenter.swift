@@ -8,12 +8,26 @@
 
 import UIKit
 
+public struct DropDownConfig {
+    var dropDownWidth: CGFloat?
+    var dropDownTag: CGFloat = 999
+    var selectedLabelTag: CGFloat = 9999
+    var dropDownLeftRightPadding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    var dropDownMode: DropDownMode = .label
+}
+
+public enum DropDownMode: String {
+    case label
+    case imageLabel
+}
+
 public protocol CustomDropDownDataSource: class {
     func overrideDropDownView() -> UIView?
     func dropDownWidth() -> CGFloat?
     func dropDownTag() -> Int
     func selectedLabelTag() -> Int
     func dropDownLeftRightPadding() -> UIEdgeInsets
+    func config() -> DropDownConfig
     func numberOfSections(in tableView: UITableView) -> Int?
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
