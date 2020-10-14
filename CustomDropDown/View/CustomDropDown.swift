@@ -7,7 +7,20 @@
 //
 
 import UIKit
+/*
+ DropDownDisplay UIView:
+    variables:
+        title - UILabel
+        button - UIButton
+    init(Int):
+        title & button
 
+    functions:
+    -
+    title.addAnchors
+    title.attributedText
+    button.addAnchors
+ */
 public class DropDownDisplayView: UIView {
     open var title: UILabel!
     open var button: UIButton!
@@ -28,6 +41,42 @@ public class DropDownDisplayView: UIView {
     }
 }
 
+
+/*
+ CustomDropDownView UIView, UITableViewDataSource, UITableViewDelegate:
+    variables:
+        dropDown - CustomDropDown<T>?
+        isOpen - Boolean
+        presenter - CustomDropDownPresenter<T>
+        heightConstraint - NSLayoutConstraint()
+        dropDownDisplayView - UIView
+ 
+    init(delegate - CustomDropDownPresenter)
+         view = delegate.overrideDropDownView() {
+             dropDownDisplayView = view
+         }else{
+             setupDropDownDisplayView()
+         }
+        dropDownDisplayView.addAnchor
+        setupDropDown()
+ 
+    functions:
+        - numberOfSections(in tableView: UITableView) -> Int
+        - tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat)
+        - tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?)
+        - tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat)
+        - tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int )
+        - tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell)
+        - tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        - getStringLabelCell(indexPath: IndexPath) -> UITableViewCell)
+        - setupDropDownDisplayView()
+        - setupDropDown()
+        - touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+        - didMoveToSuperview()
+        - getDisplayView()
+        - toggleDropDown()
+  
+ */
 class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -179,7 +228,20 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         }
     }
 }
-
+/*
+ CustomDropDown<T>: UIView:
+    Variables:
+        - tableView : UITableView - UITableView()
+    
+    Functions:
+    -
+ 
+    init(dropDownView: CustomDropDownView<T>)
+        - tableView.dataSource = dropDownView
+        - tableView.delegate = dropDownView
+        - tableView.backgroundColor = .lightGray
+        - + set anchor
+ */
 
 class CustomDropDown<T>: UIView {
     
@@ -203,7 +265,11 @@ class CustomDropDown<T>: UIView {
     }
     
 }
-
+/*
+    Extension for UIView
+    completed the anchors for dropdown menu and set position.
+ 
+ */
 extension UIView {
     func addAnchors(top: NSLayoutYAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, left: NSLayoutXAxisAnchor? = nil, right: NSLayoutXAxisAnchor? = nil, padding: CGFloat = 5, widthConstraint: NSLayoutConstraint? = nil, heightConstraint: NSLayoutConstraint? = nil) {
         self.translatesAutoresizingMaskIntoConstraints = false
