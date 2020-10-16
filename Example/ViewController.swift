@@ -11,7 +11,7 @@ import CustomDropDown
 
 class ViewController: UIViewController {
 
-    let items = ["first new hey", "second name", "third name"]
+    let items = ["Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

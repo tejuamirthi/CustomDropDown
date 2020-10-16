@@ -75,6 +75,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     func getStringLabelCell(indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let label = UILabel()
+        label.numberOfLines = 0
         label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         cell.contentView.addSubview(label)
         cell.contentView.backgroundColor = .gray
