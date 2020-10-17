@@ -40,9 +40,7 @@ public extension CustomDropDownDataSource where Self: NSObject {
     }
 
     func config() -> DropDownConfig {
-        var config = DropDownConfig()
-        config.dropDownMode = .imageLabel
-        return config
+        return DropDownConfig()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int? {
