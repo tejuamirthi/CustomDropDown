@@ -25,8 +25,13 @@ public class DropDownDisplayView: UIView {
 }
 
 public struct ImageLabelData {
-    var title: String?
-    var image: UIImage?
+    public var title: String?
+    public var image: UIImage?
+    
+    public init(title: String?, image: UIImage?) {
+        self.title = title
+        self.image = image
+    }
 }
 
 class DropDownImageLabelView: UITableViewCell {
@@ -111,7 +116,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath) {
             return cell
-        } else if T.self == String.self {
+        } else if config.dropDownMode == .label {
             return getStringLabelCell(tableView: tableView, indexPath: indexPath)
         } else {
             return getImageLabelCell(tableView: tableView, indexPath: indexPath)
@@ -122,8 +127,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let presenter = self.presenter else {
             return
         }
-        let tag = presenter.datasource?.selectedLabelTag() ?? 9999
-        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, tag: tag, data: presenter.items[indexPath.row])
+        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row])
         self.toggleDropDown()
     }
 
@@ -155,6 +159,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     var presenter: CustomDropDownPresenter<T>?
     var heightConstraint = NSLayoutConstraint()
     var dropDownDisplayView: UIView!
+    var config: DropDownConfig = DropDownConfig()
     
     init(delegate: CustomDropDownPresenter<T>) {
         super.init(frame: .zero)
@@ -175,10 +180,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let config = self.presenter?.datasource?.config() else {
             return
         }
+        self.config = config
     }
     
     func setupDropDownDisplayView() {
-        let tag = presenter?.datasource?.selectedLabelTag() ?? 9999
+        let tag = config.selectedLabelTag
         dropDownDisplayView = DropDownDisplayView(tag: tag)
     }
     
@@ -202,17 +208,16 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let dropDown = self.dropDown else {
             return
         }
-        if let tag = self.presenter?.datasource?.dropDownTag(), let view = viewWithTag(tag) {
+        if let view = viewWithTag(config.dropDownTag) {
             view.removeFromSuperview()
         }
         self.superview?.addSubview(dropDown)
         self.superview?.bringSubviewToFront(dropDown)
         dropDown.translatesAutoresizingMaskIntoConstraints = false
-        let width = self.presenter?.datasource?.dropDownWidth()
-        let dropDownLeftRightPadding: UIEdgeInsets = self.presenter?.datasource?.dropDownLeftRightPadding() ?? UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        let dropDownLeftRightPadding: UIEdgeInsets = self.config.dropDownLeftRightPadding
         dropDown.topAnchor.constraint(equalTo: self.bottomAnchor, constant: -dropDownLeftRightPadding.top).isActive = true
         dropDown.leftAnchor.constraint(equalTo: self.leftAnchor, constant: dropDownLeftRightPadding.left).isActive = true
-        if let dropDownWidth = width {
+        if let dropDownWidth = config.dropDownWidth {
             dropDown.widthAnchor.constraint(equalToConstant: dropDownWidth).isActive = true
         } else {
             dropDown.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -dropDownLeftRightPadding.right).isActive = true
