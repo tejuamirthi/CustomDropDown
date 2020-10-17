@@ -40,11 +40,8 @@ class DropDownImageLabelView: UITableViewCell {
     var imageWidthConstraint: NSLayoutConstraint!
     var imageHeightConstraint: NSLayoutConstraint!
     var imageLeadingConstraint: NSLayoutConstraint!
-    var titleLeadingConstraint: NSLayoutConstraint!
-    var titleTrailingConstraint: NSLayoutConstraint!
-    var titleTopConstraint: NSLayoutConstraint!
-    var titleBottomConstraint: NSLayoutConstraint!
-    private var labelHeightConstraint: NSLayoutConstraint!
+    var imageTrailingConstraint: NSLayoutConstraint!
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -58,29 +55,23 @@ class DropDownImageLabelView: UITableViewCell {
     func commonInit() {
         title = UILabel()
         leftImageView = UIImageView()
-        self.addSubview(title)
-        self.addSubview(leftImageView)
+        self.contentView.addSubview(title)
+        self.contentView.addSubview(leftImageView)
         setupConstraints()
         title.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
     }
     
     func setupConstraints() {
-        title.translatesAutoresizingMaskIntoConstraints = false
+        title.addAnchors(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, left: nil, right: self.contentView.rightAnchor, padding: 16, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        
         leftImageView.translatesAutoresizingMaskIntoConstraints = false
         imageWidthConstraint = leftImageView.widthAnchor.constraint(equalToConstant: 32)
         imageHeightConstraint = leftImageView.heightAnchor.constraint(equalToConstant: 32)
         imageLeadingConstraint = leftImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 16)
+        imageTrailingConstraint = leftImageView.rightAnchor.constraint(equalTo: title.leftAnchor, constant: -16)
         leftImageView.centerYAnchor.constraint(equalTo: title.centerYAnchor).isActive = true
-        
-        titleLeadingConstraint = title.leftAnchor.constraint(equalTo: leftImageView.rightAnchor, constant: 16)
-        titleTrailingConstraint = title.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -16)
-        titleTopConstraint = title.topAnchor.constraint(equalTo: self.topAnchor, constant: 16)
-        titleBottomConstraint = title.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
-        labelHeightConstraint = title.heightAnchor.constraint(greaterThanOrEqualToConstant: 20)
-        
         NSLayoutConstraint.activate([
-            imageWidthConstraint, imageHeightConstraint, imageLeadingConstraint,
-            titleLeadingConstraint, titleTopConstraint, titleTrailingConstraint, titleBottomConstraint, labelHeightConstraint
+            imageWidthConstraint, imageHeightConstraint, imageLeadingConstraint, imageTrailingConstraint
         ])
     }
 }
@@ -151,7 +142,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         cell.contentView.addSubview(label)
         cell.contentView.backgroundColor = .gray
-        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 16, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
     }
     
@@ -182,6 +173,13 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
             return
         }
         self.config = config
+        if T.self == ImageLabelData.self {
+            self.config.dropDownMode = .imageLabel
+        } else if T.self == String.self {
+            self.config.dropDownMode = .label
+        } else {
+            fatalError("not supported item tyoe")
+        }
     }
     
     func setupDropDownDisplayView() {
