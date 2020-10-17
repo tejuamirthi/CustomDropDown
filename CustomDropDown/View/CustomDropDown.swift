@@ -10,21 +10,69 @@ import UIKit
 
 public class DropDownDisplayView: UIView {
     open var title: UILabel!
-    open var button: UIButton!
     init(tag: Int) {
         super.init(frame: .zero)
         title = UILabel()
-        button = UIButton()
         self.addSubview(title)
-        self.addSubview(button)
         title.tag = tag
-        title.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: button.leftAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        title.attributedText = NSAttributedString(string: "Select-hello", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        button.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: title.rightAnchor, right: self.rightAnchor, padding: 8, widthConstraint: button.widthAnchor.constraint(equalToConstant: 60), heightConstraint: button.heightAnchor.constraint(equalToConstant: 32))
+        title.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        title.attributedText = NSAttributedString(string: "Select-hello", attributes: [NSAttributedString.Key.foregroundColor :UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+public struct ImageLabelData {
+    public var title: String?
+    public var image: UIImage?
+    
+    public init(title: String?, image: UIImage?) {
+        self.title = title
+        self.image = image
+    }
+}
+
+class DropDownImageLabelView: UITableViewCell {
+    var title: UILabel!
+    var leftImageView: UIImageView!
+    var imageWidthConstraint: NSLayoutConstraint!
+    var imageHeightConstraint: NSLayoutConstraint!
+    var imageLeadingConstraint: NSLayoutConstraint!
+    var imageTrailingConstraint: NSLayoutConstraint!
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    func commonInit() {
+        title = UILabel()
+        leftImageView = UIImageView()
+        self.contentView.addSubview(title)
+        self.contentView.addSubview(leftImageView)
+        setupConstraints()
+        title.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+    }
+    
+    func setupConstraints() {
+        title.addAnchors(top: self.contentView.topAnchor, bottom: self.contentView.bottomAnchor, left: nil, right: self.contentView.rightAnchor, padding: 16, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        imageWidthConstraint = leftImageView.widthAnchor.constraint(equalToConstant: 32)
+        imageHeightConstraint = leftImageView.heightAnchor.constraint(equalToConstant: 32)
+        imageLeadingConstraint = leftImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 16)
+        imageTrailingConstraint = leftImageView.rightAnchor.constraint(equalTo: title.leftAnchor, constant: -16)
+        leftImageView.centerYAnchor.constraint(equalTo: title.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            imageWidthConstraint, imageHeightConstraint, imageLeadingConstraint, imageTrailingConstraint
+        ])
     }
 }
 
@@ -59,27 +107,42 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath) {
             return cell
+        } else if config.dropDownMode == .label {
+            return getStringLabelCell(tableView: tableView, indexPath: indexPath)
+        } else {
+            return getImageLabelCell(tableView: tableView, indexPath: indexPath)
         }
-        return getStringLabelCell(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let presenter = self.presenter else {
             return
         }
-        let tag = presenter.datasource?.selectedLabelTag() ?? 9999
-        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, tag: tag, data: presenter.items[indexPath.row])
+        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row])
         self.toggleDropDown()
     }
 
-    func getStringLabelCell(indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+    func getImageLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DropDownImageLabelView") as? DropDownImageLabelView, let items = presenter?.items as? [ImageLabelData] else {
+            return UITableViewCell()
+        }
+        cell.title.numberOfLines = 0
+        cell.title.attributedText = NSAttributedString(string: items[indexPath.row].title ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        cell.leftImageView.image = items[indexPath.row].image
+        return cell
+    }
+
+    
+    func getStringLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UILabel") else {
+            return UITableViewCell()
+        }
         let label = UILabel()
         label.numberOfLines = 0
         label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "", attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         cell.contentView.addSubview(label)
         cell.contentView.backgroundColor = .gray
-        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 16, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
     }
     
@@ -88,10 +151,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     var presenter: CustomDropDownPresenter<T>?
     var heightConstraint = NSLayoutConstraint()
     var dropDownDisplayView: UIView!
+    var config: DropDownConfig = DropDownConfig()
     
     init(delegate: CustomDropDownPresenter<T>) {
         super.init(frame: .zero)
         self.presenter = delegate
+        setConfig()
         if let view = delegate.overrideDropDownView() {
             dropDownDisplayView = view
         } else{
@@ -100,10 +165,25 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         self.addSubview(dropDownDisplayView)
         dropDownDisplayView.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: nil)
         setupDropDown()
+        
+    }
+    
+    func setConfig() {
+        guard let config = self.presenter?.datasource?.config() else {
+            return
+        }
+        self.config = config
+        if T.self == ImageLabelData.self {
+            self.config.dropDownMode = .imageLabel
+        } else if T.self == String.self {
+            self.config.dropDownMode = .label
+        } else {
+            fatalError("not supported item tyoe")
+        }
     }
     
     func setupDropDownDisplayView() {
-        let tag = presenter?.datasource?.selectedLabelTag() ?? 9999
+        let tag = config.selectedLabelTag
         dropDownDisplayView = DropDownDisplayView(tag: tag)
     }
     
@@ -127,17 +207,16 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let dropDown = self.dropDown else {
             return
         }
-        if let tag = self.presenter?.datasource?.dropDownTag(), let view = viewWithTag(tag) {
+        if let view = viewWithTag(config.dropDownTag) {
             view.removeFromSuperview()
         }
         self.superview?.addSubview(dropDown)
         self.superview?.bringSubviewToFront(dropDown)
         dropDown.translatesAutoresizingMaskIntoConstraints = false
-        let width = self.presenter?.datasource?.dropDownWidth()
-        let dropDownLeftRightPadding: UIEdgeInsets = self.presenter?.datasource?.dropDownLeftRightPadding() ?? UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        let dropDownLeftRightPadding: UIEdgeInsets = self.config.dropDownLeftRightPadding
         dropDown.topAnchor.constraint(equalTo: self.bottomAnchor, constant: -dropDownLeftRightPadding.top).isActive = true
         dropDown.leftAnchor.constraint(equalTo: self.leftAnchor, constant: dropDownLeftRightPadding.left).isActive = true
-        if let dropDownWidth = width {
+        if let dropDownWidth = config.dropDownWidth {
             dropDown.widthAnchor.constraint(equalToConstant: dropDownWidth).isActive = true
         } else {
             dropDown.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -dropDownLeftRightPadding.right).isActive = true
@@ -190,6 +269,8 @@ class CustomDropDown<T>: UIView {
         super.init(frame: .zero)
         tableView.dataSource = dropDownView
         tableView.delegate = dropDownView
+        tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: "DropDownImageLabelView")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UILabel")
         tableView.backgroundColor = .lightGray
         self.addSubview(tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false

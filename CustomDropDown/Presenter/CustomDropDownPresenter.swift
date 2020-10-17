@@ -8,12 +8,24 @@
 
 import UIKit
 
+public struct DropDownConfig {
+    public var dropDownWidth: CGFloat?
+    public var dropDownTag: Int = 999
+    public var selectedLabelTag: Int = 9999
+    public var dropDownLeftRightPadding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    public var dropDownMode: DropDownMode = .label
+    
+    public init() {}
+}
+
+public enum DropDownMode: Int, CaseIterable {
+    case label
+    case imageLabel
+}
+
 public protocol CustomDropDownDataSource: class {
     func overrideDropDownView() -> UIView?
-    func dropDownWidth() -> CGFloat?
-    func dropDownTag() -> Int
-    func selectedLabelTag() -> Int
-    func dropDownLeftRightPadding() -> UIEdgeInsets
+    func config() -> DropDownConfig
     func numberOfSections(in tableView: UITableView) -> Int?
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -26,21 +38,9 @@ public extension CustomDropDownDataSource where Self: NSObject {
     func overrideDropDownView() -> UIView? {
         return nil
     }
-    
-    func dropDownWidth() -> CGFloat? {
-        return nil
-    }
-    
-    func dropDownTag() -> Int {
-        return 999
-    }
-    
-    func selectedLabelTag() -> Int {
-        return 9999
-    }
-    
-    func dropDownLeftRightPadding() -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+
+    func config() -> DropDownConfig {
+        return DropDownConfig()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int? {
@@ -69,15 +69,24 @@ public extension CustomDropDownDataSource where Self: NSObject {
 }
 
 public protocol CustomDropDownDelegate: class {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any)
+    
+    // Use in case of custom Implementation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any)
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any)
 }
 
 public extension CustomDropDownDelegate where Self: NSObject {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, tag: Int, data: Any) {
-        guard let text = data as? String else {
-            return
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any) {
+        self.tableView(tableView, didSelectRowAt: indexPath, data: data)
+        var selectedString: String? = nil
+        switch config.dropDownMode {
+        case .imageLabel:
+            selectedString = (data as? ImageLabelData)?.title
+        default:
+            selectedString = data as? String
         }
-        if let label = displayView.viewWithTag(tag) as? UILabel {
+        if let text = selectedString, let label = displayView.viewWithTag(config.selectedLabelTag) as? UILabel {
             label.text = text
         }
     }
