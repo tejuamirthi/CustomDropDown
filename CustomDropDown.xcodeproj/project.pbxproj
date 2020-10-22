@@ -54,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		172E2C7225423A0A001F37B7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6055FCBA2529AEC80096A0FD /* CustomDropDown.h */,
+				6055FCBB2529AEC80096A0FD /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
 		6055FCAD2529AEC80096A0FD = {
 			isa = PBXGroup;
 			children = (
@@ -77,9 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				6055FCD82529B1C80096A0FD /* Presenter */,
+				172E2C7225423A0A001F37B7 /* Support Files */,
 				6055FCD72529B1AA0096A0FD /* View */,
-				6055FCBA2529AEC80096A0FD /* CustomDropDown.h */,
-				6055FCBB2529AEC80096A0FD /* Info.plist */,
 			);
 			path = CustomDropDown;
 			sourceTree = "<group>";
@@ -399,7 +407,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CustomDropDown/Info.plist;
+				INFOPLIST_FILE = "CustomDropDown/Support Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -424,7 +432,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CustomDropDown/Info.plist;
+				INFOPLIST_FILE = "CustomDropDown/Support Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
