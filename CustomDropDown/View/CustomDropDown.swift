@@ -188,7 +188,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func setupDropDown() {
-        dropDown = CustomDropDown<T>(dropDownView: self)
+        dropDown = CustomDropDown<T>(dropDownView: self, tag: config.dropDownTag)
     }
     
     required init?(coder: NSCoder) {
@@ -207,7 +207,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let dropDown = self.dropDown else {
             return
         }
-        if let view = viewWithTag(config.dropDownTag) {
+        if let view = self.superview?.viewWithTag(config.dropDownTag) {
             view.removeFromSuperview()
         }
         self.superview?.addSubview(dropDown)
@@ -265,8 +265,9 @@ class CustomDropDown<T>: UIView {
     
     var tableView: UITableView = UITableView()
     
-    init(dropDownView: CustomDropDownView<T>) {
+    init(dropDownView: CustomDropDownView<T>, tag: Int) {
         super.init(frame: .zero)
+        self.tag = tag
         tableView.dataSource = dropDownView
         tableView.delegate = dropDownView
         tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: "DropDownImageLabelView")
