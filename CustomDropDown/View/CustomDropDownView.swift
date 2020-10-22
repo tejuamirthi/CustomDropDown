@@ -24,6 +24,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
     var isOpen: Bool = true
     var identifier: Int
+    var outsideGesture: UITapGestureRecognizer?
     
     // MARK: - Life cycle
     
@@ -162,6 +163,72 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
                        completion: completion)
     }
     
+    /*func toggleDropDown() {
+        if isOpen {
+            closeDropDown()
+        } else {
+            openDropDown()
+        }
+    }
+    
+    func openDropDown() {
+        guard let dropDown = self.dropDown else {
+            return
+        }
+        isOpen = true
+        addOutsideGesture()
+        NSLayoutConstraint.deactivate([heightConstraint])
+        var height: CGFloat = 200
+        if height > dropDown.tableView.contentSize.height {
+            height = dropDown.tableView.contentSize.height
+        }
+        self.superview?.bringSubviewToFront(dropDown)
+        self.heightConstraint.constant = height
+        NSLayoutConstraint.activate([heightConstraint])
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            dropDown.layoutIfNeeded()
+            dropDown.center.y += dropDown.frame.height/2
+        })
+    }
+    
+    func closeDropDown() {
+        guard let dropDown = self.dropDown else {
+            return
+        }
+        isOpen = false
+        removeOutsideGesture()
+        NSLayoutConstraint.deactivate([heightConstraint])
+        heightConstraint.constant = 0
+        NSLayoutConstraint.activate([heightConstraint])
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            dropDown.center.y -= dropDown.frame.height/2
+            dropDown.layoutIfNeeded()
+        })
+    }
+    
+    func addOutsideGesture() {
+        guard outsideGesture == nil else { return }
+        let rootView = window?.topViewController()?.view
+        outsideGesture = UITapGestureRecognizer(target: self, action: #selector(outsideGestureHandler))
+        outsideGesture?.delegate = self
+        rootView?.addGestureRecognizer(outsideGesture!)
+    }
+    
+    func removeOutsideGesture() {
+        let rootView = window?.topViewController()?.view
+        if let tap = outsideGesture {
+            rootView?.removeGestureRecognizer(tap)
+        }
+        outsideGesture = nil
+    }
+    
+    @objc func outsideGestureHandler(gesture: UITapGestureRecognizer) {
+        if isOpen {
+            closeDropDown()
+        }
+    }*/
+    
     // MARK: - Table View
     
     private func getImageLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
@@ -199,6 +266,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
                          widthConstraint: nil,
                          heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
+    }
+    
+    // MARK: UIGestureRecognizerDelegate methods
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     // MARK: - UITableViewDataSource
