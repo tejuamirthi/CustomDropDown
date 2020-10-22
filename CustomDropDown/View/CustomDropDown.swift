@@ -8,16 +8,6 @@
 
 import UIKit
 
-public struct ImageLabelData {
-    public var title: String?
-    public var image: UIImage?
-    
-    public init(title: String?, image: UIImage?) {
-        self.title = title
-        self.image = image
-    }
-}
-
 class CustomDropDown<T>: UIView {
     
     var tableView: UITableView = UITableView()
