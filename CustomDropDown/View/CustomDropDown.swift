@@ -33,32 +33,3 @@ class CustomDropDown<T>: UIView {
     }
     
 }
-
-extension UIView {
-    func addAnchors(top: NSLayoutYAxisAnchor? = nil, bottom: NSLayoutYAxisAnchor? = nil, left: NSLayoutXAxisAnchor? = nil, right: NSLayoutXAxisAnchor? = nil, padding: CGFloat = 5, widthConstraint: NSLayoutConstraint? = nil, heightConstraint: NSLayoutConstraint? = nil) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        if let top = top {
-            self.topAnchor.constraint(equalTo: top, constant: padding).isActive = true
-        }
-
-        if let right = right {
-            self.rightAnchor.constraint(equalTo: right, constant: -padding).isActive = true
-        }
-        
-        if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: padding).isActive = true
-        }
-        
-        if let bottom = bottom {
-            self.bottomAnchor.constraint(equalTo: bottom, constant: -padding).isActive = true
-        }
-        
-        if let widthConstraint = widthConstraint {
-            widthConstraint.isActive = true
-        }
-        
-        if let heightConstraint = heightConstraint {
-            heightConstraint.isActive = true
-        }
-    }
-}
