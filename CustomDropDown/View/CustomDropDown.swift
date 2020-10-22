@@ -10,26 +10,54 @@ import UIKit
 
 class CustomDropDown<T>: UIView {
     
-    var tableView: UITableView = UITableView()
+    // MARK: - Variables
+    
+    lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
+    // MARK: - Life cycle
     
     init(dropDownView: CustomDropDownView<T>, tag: Int) {
         super.init(frame: .zero)
         self.tag = tag
-        tableView.dataSource = dropDownView
-        tableView.delegate = dropDownView
-        tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: "DropDownImageLabelView")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UILabel")
-        tableView.backgroundColor = .lightGray
-        self.addSubview(tableView)
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        
+        setupView()
+        setupTableView(with: dropDownView)
+        registerCells()
     }
         
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Table View
+    
+    private func setupTableView(with dropDownView: CustomDropDownView<T>) {
+        tableView.dataSource = dropDownView
+        tableView.delegate = dropDownView
+    }
+    
+    private func registerCells() {
+        tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: DropDownImageLabelView.reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UILabel")
+    }
+}
+
+// MARK: - ViewCode
+
+extension CustomDropDown: ViewCode {
+    func buildViewHierarchy() {
+        addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+    }
 }
