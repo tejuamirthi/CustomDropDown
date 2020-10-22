@@ -24,46 +24,46 @@ public enum DropDownMode: Int, CaseIterable {
 }
 
 public protocol CustomDropDownDataSource: class {
-    func overrideDropDownView() -> UIView?
-    func config() -> DropDownConfig
-    func numberOfSections(in tableView: UITableView) -> Int?
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int?
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell?
+    func overrideDropDownView(identifier: Int) -> UIView?
+    func config(identifier: Int) -> DropDownConfig
+    func numberOfSections(in tableView: UITableView, identifier: Int) -> Int?
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int, identifier: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int, identifier: Int) -> UIView?
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath, identifier: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int, identifier: Int) -> Int?
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, identifier: Int) -> UITableViewCell?
 }
 
 public extension CustomDropDownDataSource where Self: NSObject {
-    func overrideDropDownView() -> UIView? {
+    func overrideDropDownView(identifier: Int) -> UIView? {
         return nil
     }
 
-    func config() -> DropDownConfig {
+    func config(identifier: Int) -> DropDownConfig {
         return DropDownConfig()
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int? {
+    func numberOfSections(in tableView: UITableView, identifier: Int) -> Int? {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int, identifier: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int, identifier: Int) -> UIView? {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath, identifier: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int? {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int, identifier: Int) -> Int? {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, identifier: Int) -> UITableViewCell? {
         return nil
     }
 }
@@ -71,14 +71,14 @@ public extension CustomDropDownDataSource where Self: NSObject {
 public protocol CustomDropDownDelegate: class {
     
     // Use in case of custom Implementation
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any, identifier: Int)
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int)
 }
 
 public extension CustomDropDownDelegate where Self: NSObject {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any) {
-        self.tableView(tableView, didSelectRowAt: indexPath, data: data)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any, identifier: Int) {
+        self.tableView(tableView, didSelectRowAt: indexPath, data: data, identifier: identifier)
         var selectedString: String? = nil
         switch config.dropDownMode {
         case .imageLabel:
@@ -103,22 +103,19 @@ public class CustomDropDownPresenter<T>: NSObject {
     var dropDown: CustomDropDownView<T>!
     
     // MARK: - Initializer
-    public init(items: [T], delegate: CustomDropDownDelegate?) {
+    public init(items: [T], delegate: CustomDropDownDelegate?, identifier: Int = 0) {
         self.items = items
         print(items[0])
         super.init()
         self.delegate = delegate
         self.datasource = delegate as? CustomDropDownDataSource
-        dropDown = CustomDropDownView(delegate: self)
+        dropDown = CustomDropDownView(delegate: self, identifier: identifier)
     }
     
     public func getDropDownView() -> UIView {
         return dropDown as UIView
     }
     
-    func overrideDropDownView() -> UIView? {
-        return datasource?.overrideDropDownView()
-    }
 }
 
 //extension CustomDropDownPresenter: {

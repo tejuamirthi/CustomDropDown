@@ -78,34 +78,42 @@ class DropDownImageLabelView: UITableViewCell {
 
 class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate {
     
+    var dropDown: CustomDropDown<T>?
+    var isOpen = true
+    var presenter: CustomDropDownPresenter<T>?
+    var heightConstraint = NSLayoutConstraint()
+    var dropDownDisplayView: UIView!
+    var config: DropDownConfig = DropDownConfig()
+    var identifier: Int
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let sections = presenter?.datasource?.numberOfSections(in: tableView) {
+        if let sections = presenter?.datasource?.numberOfSections(in: tableView, identifier: identifier) {
             return sections
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        presenter?.datasource?.tableView(tableView, heightForHeaderInSection: section) ?? 0
+        presenter?.datasource?.tableView(tableView, heightForHeaderInSection: section, identifier: identifier) ?? 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return presenter?.datasource?.tableView(tableView, viewForHeaderInSection: section)
+        return presenter?.datasource?.tableView(tableView, viewForHeaderInSection: section, identifier: identifier)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return presenter?.datasource?.tableView(tableView, heightForRowAt: indexPath) ?? UITableView.automaticDimension
+        return presenter?.datasource?.tableView(tableView, heightForRowAt: indexPath, identifier: identifier) ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rows = presenter?.datasource?.tableView(tableView, numberOfRowsInSection: section) {
+        if let rows = presenter?.datasource?.tableView(tableView, numberOfRowsInSection: section, identifier: identifier) {
             return rows
         }
         return presenter?.items.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath) {
+        if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath, identifier: identifier) {
             return cell
         } else if config.dropDownMode == .label {
             return getStringLabelCell(tableView: tableView, indexPath: indexPath)
@@ -118,7 +126,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         guard let presenter = self.presenter else {
             return
         }
-        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row])
+        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row], identifier: identifier)
         self.toggleDropDown()
     }
 
@@ -146,18 +154,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         return cell
     }
     
-    var dropDown: CustomDropDown<T>?
-    var isOpen = true
-    var presenter: CustomDropDownPresenter<T>?
-    var heightConstraint = NSLayoutConstraint()
-    var dropDownDisplayView: UIView!
-    var config: DropDownConfig = DropDownConfig()
-    
-    init(delegate: CustomDropDownPresenter<T>) {
+    init(delegate: CustomDropDownPresenter<T>, identifier: Int) {
+        self.identifier = identifier
         super.init(frame: .zero)
         self.presenter = delegate
         setConfig()
-        if let view = delegate.overrideDropDownView() {
+        if let view = delegate.datasource?.overrideDropDownView(identifier: identifier) {
             dropDownDisplayView = view
         } else{
             setupDropDownDisplayView()
@@ -169,7 +171,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func setConfig() {
-        guard let config = self.presenter?.datasource?.config() else {
+        guard let config = self.presenter?.datasource?.config(identifier: identifier) else {
             return
         }
         self.config = config
