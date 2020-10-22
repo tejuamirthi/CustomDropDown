@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172E2C8A25423DD3001F37B7 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2C8925423DD3001F37B7 /* ViewCode.swift */; };
+		172E2C8E25423DE1001F37B7 /* DropDownDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2C8D25423DE1001F37B7 /* DropDownDisplayView.swift */; };
 		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; platformFilter = ios; };
 		6055FCBC2529AEC80096A0FD /* CustomDropDown.h in Headers */ = {isa = PBXBuildFile; fileRef = 6055FCBA2529AEC80096A0FD /* CustomDropDown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; platformFilter = ios; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		172E2C8925423DD3001F37B7 /* ViewCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		172E2C8D25423DE1001F37B7 /* DropDownDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDisplayView.swift; sourceTree = "<group>"; };
 		600DFEAA2529BA4200206E64 /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
 		6055FCB72529AEC80096A0FD /* CustomDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6055FCBA2529AEC80096A0FD /* CustomDropDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDropDown.h; sourceTree = "<group>"; };
@@ -59,6 +63,7 @@
 			children = (
 				6055FCBA2529AEC80096A0FD /* CustomDropDown.h */,
 				6055FCBB2529AEC80096A0FD /* Info.plist */,
+				172E2C8925423DD3001F37B7 /* ViewCode.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				600DFEAA2529BA4200206E64 /* CustomDropDown.swift */,
+				172E2C8D25423DE1001F37B7 /* DropDownDisplayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +249,8 @@
 			files = (
 				6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */,
 				600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */,
+				172E2C8E25423DE1001F37B7 /* DropDownDisplayView.swift in Sources */,
+				172E2C8A25423DD3001F37B7 /* ViewCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

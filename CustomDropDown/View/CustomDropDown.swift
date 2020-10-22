@@ -8,21 +8,7 @@
 
 import UIKit
 
-public class DropDownDisplayView: UIView {
-    open var title: UILabel!
-    init(tag: Int) {
-        super.init(frame: .zero)
-        title = UILabel()
-        self.addSubview(title)
-        title.tag = tag
-        title.addAnchors(top: self.topAnchor, bottom: self.bottomAnchor, left: self.leftAnchor, right: self.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: title.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
-        title.attributedText = NSAttributedString(string: "Select-hello", attributes: [NSAttributedString.Key.foregroundColor :UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+
 
 public struct ImageLabelData {
     public var title: String?
