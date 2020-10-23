@@ -120,17 +120,17 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
             isOpen = false
             setHeightConstraint(to: dropDownHeight, maxHeight: dropDown.tableView.contentSize.height)
             superview?.bringSubviewToFront(dropDown)
-            animateDropDown {
+            animateDropDown(animations: {
                 dropDown.layoutIfNeeded()
                 dropDown.center.y += dropDown.frame.height/2
-            }
+            })
         } else {
             isOpen = true
             setHeightConstraint(to: 0)
-            animateDropDown {
+            animateDropDown(animations: {
                 dropDown.center.y -= dropDown.frame.height/2
                 dropDown.layoutIfNeeded()
-            }
+            })
         }
     }
     
