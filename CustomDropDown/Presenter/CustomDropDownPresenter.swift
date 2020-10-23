@@ -13,25 +13,29 @@ import UIKit
 //}
 
 public class CustomDropDownPresenter<T>: NSObject {
+    
+    // MARK: - Variables
+    
     var items: [T]
     weak var datasource: CustomDropDownDataSource?
     weak var delegate: CustomDropDownDelegate?
     var dropDown: CustomDropDownView<T>!
     
-    // MARK: - Initializer
+    // MARK: - Life cycle
+    
     public init(items: [T], delegate: CustomDropDownDelegate?, identifier: Int = 0) {
         self.items = items
-        print(items[0])
         super.init()
+        
         self.delegate = delegate
         self.datasource = delegate as? CustomDropDownDataSource
+        
         dropDown = CustomDropDownView(delegate: self, identifier: identifier)
     }
     
     public func getDropDownView() -> UIView {
         return dropDown as UIView
     }
-    
 }
 
 //extension CustomDropDownPresenter: {
