@@ -15,6 +15,8 @@
 		172E2CAC254251AC001F37B7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CAB254251AC001F37B7 /* UIViewExtension.swift */; };
 		172E2CB225425475001F37B7 /* DropDownConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CB125425475001F37B7 /* DropDownConfig.swift */; };
 		172E2CB6254254A5001F37B7 /* DropDownMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CB5254254A5001F37B7 /* DropDownMode.swift */; };
+		172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */; };
+		172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */; };
 		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; platformFilter = ios; };
 		6055FCBC2529AEC80096A0FD /* CustomDropDown.h in Headers */ = {isa = PBXBuildFile; fileRef = 6055FCBA2529AEC80096A0FD /* CustomDropDown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; platformFilter = ios; };
@@ -36,6 +38,8 @@
 		172E2CAB254251AC001F37B7 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		172E2CB125425475001F37B7 /* DropDownConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownConfig.swift; sourceTree = "<group>"; };
 		172E2CB5254254A5001F37B7 /* DropDownMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMode.swift; sourceTree = "<group>"; };
+		172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDataSource.swift; sourceTree = "<group>"; };
+		172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDelegate.swift; sourceTree = "<group>"; };
 		600DFEAA2529BA4200206E64 /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
 		6055FCB72529AEC80096A0FD /* CustomDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6055FCBA2529AEC80096A0FD /* CustomDropDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDropDown.h; sourceTree = "<group>"; };
@@ -75,7 +79,6 @@
 			children = (
 				6055FCBA2529AEC80096A0FD /* CustomDropDown.h */,
 				6055FCBB2529AEC80096A0FD /* Info.plist */,
-				172E2C8925423DD3001F37B7 /* ViewCode.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -96,6 +99,16 @@
 				172E2CAB254251AC001F37B7 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		172E2CBD25425520001F37B7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */,
+				172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */,
+				172E2C8925423DD3001F37B7 /* ViewCode.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		6055FCAD2529AEC80096A0FD = {
@@ -123,6 +136,7 @@
 				172E2CAA25425190001F37B7 /* Extensions */,
 				172E2CA125425116001F37B7 /* Model */,
 				6055FCD82529B1C80096A0FD /* Presenter */,
+				172E2CBD25425520001F37B7 /* Protocols */,
 				172E2C7225423A0A001F37B7 /* Support Files */,
 				6055FCD72529B1AA0096A0FD /* View */,
 			);
@@ -291,6 +305,8 @@
 				172E2C9825424612001F37B7 /* CustomDropDownView.swift in Sources */,
 				172E2CAC254251AC001F37B7 /* UIViewExtension.swift in Sources */,
 				172E2C8A25423DD3001F37B7 /* ViewCode.swift in Sources */,
+				172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */,
+				172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
