@@ -13,6 +13,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
     // MARK: - Constants
     
     let padding: CGFloat = 8
+    let dropDownHeight: CGFloat = 200
     
     // MARK: - Variables
     
@@ -117,7 +118,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         
         if isOpen {
             isOpen = false
-            setHeightConstraint(to: 200, maxHeight: dropDown.tableView.contentSize.height)
+            setHeightConstraint(to: dropDownHeight, maxHeight: dropDown.tableView.contentSize.height)
             superview?.bringSubviewToFront(dropDown)
             animateDropDown {
                 dropDown.layoutIfNeeded()
