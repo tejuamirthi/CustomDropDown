@@ -14,11 +14,7 @@ public struct DropDownConfig {
     public var selectedLabelTag: Int = 9999
     public var dropDownLeftRightPadding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
     public var dropDownMode: DropDownMode = .label
-    public var dropDownShadowColor: CGColor = UIColor.black.cgColor
-    public var dropDownShadowOffset: CGSize = .zero
-    public var dropDownShadowOpacity: Float = 0
-    public var dropDownShadowRadius: CGFloat = 0
-    public var dropDownCornerRadius: CGFloat = 0
+    public var shadowAndCornerConfig: ShadowAndCornerConfig = ShadowAndCornerConfig()
     
     public init() {}
 }

@@ -92,12 +92,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         dropDown = CustomDropDown<T>(dropDownView: self, tag: config.dropDownTag)
         dropDown?.translatesAutoresizingMaskIntoConstraints = false
 
-        dropDown?.cornerRadius = config.dropDownCornerRadius
+        dropDown?.cornerRadius = config.shadowAndCornerConfig.cornerRadius
         
-        dropDown?.layer.shadowColor = config.dropDownShadowColor
-        dropDown?.layer.shadowOpacity = config.dropDownShadowOpacity
-        dropDown?.layer.shadowOffset = config.dropDownShadowOffset
-        dropDown?.layer.shadowRadius = config.dropDownShadowRadius
+        dropDown?.layer.shadowColor = config.shadowAndCornerConfig.shadowColor
+        dropDown?.layer.shadowOpacity = config.shadowAndCornerConfig.shadowOpacity
+        dropDown?.layer.shadowOffset = config.shadowAndCornerConfig.shadowOffset
+        dropDown?.layer.shadowRadius = config.shadowAndCornerConfig.shadowRadius
     }
     
     private func resetDropDownConstraints() {

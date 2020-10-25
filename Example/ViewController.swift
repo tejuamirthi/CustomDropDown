@@ -52,10 +52,14 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     
     func config(identifier: Int) -> DropDownConfig {
         var config = DropDownConfig()
-        config.dropDownShadowOffset = CGSize(width: 5, height: 5)
-        config.dropDownShadowOpacity = 0.8
-        config.dropDownShadowRadius = 5
-        config.dropDownCornerRadius = 5
+        
+        var shadowAndCornerConfig = ShadowAndCornerConfig()
+        shadowAndCornerConfig.shadowOffset = CGSize(width: 5, height: 5)
+        shadowAndCornerConfig.shadowOpacity = 0.8
+        shadowAndCornerConfig.shadowRadius = 5
+        shadowAndCornerConfig.cornerRadius = 5
+        
+        config.shadowAndCornerConfig = shadowAndCornerConfig
         return config
     }
 }
