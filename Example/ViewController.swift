@@ -49,6 +49,15 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
         
     }
+    
+    func config(identifier: Int) -> DropDownConfig {
+        var config = DropDownConfig()
+        config.dropDownShadowOffset = CGSize(width: 5, height: 5)
+        config.dropDownShadowOpacity = 0.8
+        config.dropDownShadowRadius = 5
+        config.dropDownCornerRadius = 5
+        return config
+    }
 }
 
 extension UIView {

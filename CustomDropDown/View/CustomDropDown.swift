@@ -12,6 +12,15 @@ class CustomDropDown<T>: UIView {
     
     // MARK: - Variables
     
+    public var cornerRadius: CGFloat = 0.0 {
+        didSet{
+            containerView.layer.cornerRadius = cornerRadius
+            containerView.layer.masksToBounds = true
+        }
+    }
+    
+    private let containerView = UIView()
+    
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -51,13 +60,20 @@ class CustomDropDown<T>: UIView {
 
 extension CustomDropDown: ViewCode {
     func buildViewHierarchy() {
-        addSubview(tableView)
+        addSubview(containerView)
+        containerView.addSubview(tableView)
     }
     
     func setupConstraints() {
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        tableView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
     }
 }
