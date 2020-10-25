@@ -49,6 +49,12 @@ extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
         
     }
+    
+    func config(identifier: Int) -> DropDownConfig {
+        var config = DropDownConfig()
+        config.dropDownCollapsable = true
+        return config
+    }
 }
 
 extension UIView {
