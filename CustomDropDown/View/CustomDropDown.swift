@@ -12,17 +12,15 @@ class CustomDropDown<T>: UIView {
     
     // MARK: - Variables
     
-    public var cornerRadius: CGFloat = 0.0 {
+    // Making the view's masksToBounds = true to have round corners prevent the shadow to appear. So, it is necessary to
+    // use the tableview's cornerRadius instead. This way, the shadow can be applied to the view while the
+    // round corners are applied to the tableview.
+    var cornerRadius: CGFloat = 0.0 {
         didSet{
-            containerView.layer.cornerRadius = cornerRadius
-            containerView.layer.masksToBounds = true
+            tableView.layer.cornerRadius = cornerRadius
+            tableView.layer.masksToBounds = true
         }
     }
-    
-    // Making `masksToBounds = true` to have round corners prevent the shadow to appear. So, it was necessary to
-    // wrap the tableview in a containerView. This way, the shadow can be applied to the view while the
-    // round corners are applied to the containerView.
-    private let containerView = UIView()
     
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -63,20 +61,13 @@ class CustomDropDown<T>: UIView {
 
 extension CustomDropDown: ViewCode {
     func buildViewHierarchy() {
-        addSubview(containerView)
-        containerView.addSubview(tableView)
+        addSubview(tableView)
     }
     
     func setupConstraints() {
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        tableView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     }
 }
