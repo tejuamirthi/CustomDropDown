@@ -190,6 +190,8 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         outsideGesture = nil
     }
     
+    // This func is called even when user click on tableview row. So, to avoid conflicts
+    // is necessary to detect if tap is not over DropDown to close it.
     @objc func outsideGestureHandler(gesture: UITapGestureRecognizer) {
         let location = gesture.location(in: dropDown)
         let wh = (w: dropDown?.frame.width ?? 0, h: dropDown?.frame.height ?? 0)
