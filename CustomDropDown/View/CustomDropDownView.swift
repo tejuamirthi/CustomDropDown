@@ -248,7 +248,10 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate 
         
         presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row], identifier: identifier)
         
-        toggleDropDown()
+        
+        if config.dropDownCollapsable {
+            toggleDropDown()
+        }
     }
 }
 
