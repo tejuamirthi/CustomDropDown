@@ -17,6 +17,7 @@
 		172E2CB6254254A5001F37B7 /* DropDownMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CB5254254A5001F37B7 /* DropDownMode.swift */; };
 		172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */; };
 		172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */; };
+		27EDDDEA2546A17800DB0ECA /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */; };
 		3D469C3D2545DDFB00B2993A /* ShadowAndCornerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */; };
 		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; platformFilter = ios; };
 		6055FCBC2529AEC80096A0FD /* CustomDropDown.h in Headers */ = {isa = PBXBuildFile; fileRef = 6055FCBA2529AEC80096A0FD /* CustomDropDown.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +42,7 @@
 		172E2CB5254254A5001F37B7 /* DropDownMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMode.swift; sourceTree = "<group>"; };
 		172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDataSource.swift; sourceTree = "<group>"; };
 		172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDelegate.swift; sourceTree = "<group>"; };
+		27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowAndCornerConfig.swift; sourceTree = "<group>"; };
 		600DFEAA2529BA4200206E64 /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
 		6055FCB72529AEC80096A0FD /* CustomDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				172E2CAB254251AC001F37B7 /* UIViewExtension.swift */,
+				27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				172E2CB225425475001F37B7 /* DropDownConfig.swift in Sources */,
 				172E2C9425423F7B001F37B7 /* DropDownImageLabelView.swift in Sources */,
 				6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */,
+				27EDDDEA2546A17800DB0ECA /* UIWindowExtension.swift in Sources */,
 				172E2CB6254254A5001F37B7 /* DropDownMode.swift in Sources */,
 				600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */,
 				172E2CA325425123001F37B7 /* ImageLabelData.swift in Sources */,
