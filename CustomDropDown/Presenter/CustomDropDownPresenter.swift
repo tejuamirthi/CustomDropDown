@@ -8,114 +8,34 @@
 
 import UIKit
 
-public struct DropDownConfig {
-    public var dropDownWidth: CGFloat?
-    public var dropDownTag: Int = 999
-    public var selectedLabelTag: Int = 9999
-    public var dropDownLeftRightPadding: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-    public var dropDownMode: DropDownMode = .label
-    
-    public init() {}
-}
-
-public enum DropDownMode: Int, CaseIterable {
-    case label
-    case imageLabel
-}
-
-public protocol CustomDropDownDataSource: class {
-    func overrideDropDownView(identifier: Int) -> UIView?
-    func config(identifier: Int) -> DropDownConfig
-    func numberOfSections(in tableView: UITableView, identifier: Int) -> Int?
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int, identifier: Int) -> CGFloat
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int, identifier: Int) -> UIView?
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath, identifier: Int) -> CGFloat
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int, identifier: Int) -> Int?
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, identifier: Int) -> UITableViewCell?
-}
-
-public extension CustomDropDownDataSource where Self: NSObject {
-    func overrideDropDownView(identifier: Int) -> UIView? {
-        return nil
-    }
-
-    func config(identifier: Int) -> DropDownConfig {
-        return DropDownConfig()
-    }
-    
-    func numberOfSections(in tableView: UITableView, identifier: Int) -> Int? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int, identifier: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int, identifier: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath, identifier: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int, identifier: Int) -> Int? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath, identifier: Int) -> UITableViewCell? {
-        return nil
-    }
-}
-
-public protocol CustomDropDownDelegate: class {
-    
-    // Use in case of custom Implementation
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any, identifier: Int)
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int)
-}
-
-public extension CustomDropDownDelegate where Self: NSObject {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, displayView: UIView, config: DropDownConfig, data: Any, identifier: Int) {
-        self.tableView(tableView, didSelectRowAt: indexPath, data: data, identifier: identifier)
-        var selectedString: String? = nil
-        switch config.dropDownMode {
-        case .imageLabel:
-            selectedString = (data as? ImageLabelData)?.title
-        default:
-            selectedString = data as? String
-        }
-        if let text = selectedString, let label = displayView.viewWithTag(config.selectedLabelTag) as? UILabel {
-            label.text = text
-        }
-    }
-}
-
 //class DropDownItem: UIView {
 //    open var title: String?
 //}
 
 public class CustomDropDownPresenter<T>: NSObject {
+    
+    // MARK: - Variables
+    
     var items: [T]
     weak var datasource: CustomDropDownDataSource?
     weak var delegate: CustomDropDownDelegate?
     var dropDown: CustomDropDownView<T>!
     
-    // MARK: - Initializer
+    // MARK: - Life cycle
+    
     public init(items: [T], delegate: CustomDropDownDelegate?, identifier: Int = 0) {
         self.items = items
-        print(items[0])
         super.init()
+        
         self.delegate = delegate
         self.datasource = delegate as? CustomDropDownDataSource
+        
         dropDown = CustomDropDownView(delegate: self, identifier: identifier)
     }
     
     public func getDropDownView() -> UIView {
         return dropDown as UIView
     }
-    
 }
 
 //extension CustomDropDownPresenter: {
