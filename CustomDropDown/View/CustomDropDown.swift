@@ -12,6 +12,16 @@ class CustomDropDown<T>: UIView {
     
     // MARK: - Variables
     
+    // Making the view's masksToBounds = true to have round corners prevent the shadow to appear. So, it is necessary to
+    // use the tableview's cornerRadius instead. This way, the shadow can be applied to the view while the
+    // round corners are applied to the tableview.
+    var cornerRadius: CGFloat = 0.0 {
+        didSet{
+            tableView.layer.cornerRadius = cornerRadius
+            tableView.layer.masksToBounds = true
+        }
+    }
+    
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
