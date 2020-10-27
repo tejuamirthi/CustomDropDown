@@ -17,6 +17,13 @@
 		172E2CB6254254A5001F37B7 /* DropDownMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CB5254254A5001F37B7 /* DropDownMode.swift */; };
 		172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */; };
 		172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */; };
+		17A2CB9F2548DE4800A80D82 /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6055FCB72529AEC80096A0FD /* CustomDropDown.framework */; };
+		17A2CBB42548DE6100A80D82 /* CustomDropDownDelegateAndDataSourceDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBAC2548DE6100A80D82 /* CustomDropDownDelegateAndDataSourceDummy.swift */; };
+		17A2CBB52548DE6100A80D82 /* CustomDropDownPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBAE2548DE6100A80D82 /* CustomDropDownPresenterTests.swift */; };
+		17A2CBB62548DE6100A80D82 /* DropDownImageLabelViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBB02548DE6100A80D82 /* DropDownImageLabelViewTests.swift */; };
+		17A2CBB72548DE6100A80D82 /* DropDownDisplayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBB12548DE6100A80D82 /* DropDownDisplayViewTests.swift */; };
+		17A2CBB82548DE6100A80D82 /* CustomDropDownViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBB22548DE6100A80D82 /* CustomDropDownViewTests.swift */; };
+		17A2CBB92548DE6100A80D82 /* CustomDropDownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A2CBB32548DE6100A80D82 /* CustomDropDownTests.swift */; };
 		27C2E8232547C93900D082CE /* ImageLabelStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C2E8222547C93900D082CE /* ImageLabelStyleViewController.swift */; };
 		27EDDDEA2546A17800DB0ECA /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */; };
 		3D469C3D2545DDFB00B2993A /* ShadowAndCornerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */; };
@@ -32,6 +39,16 @@
 		60A95B382532CABE00222D5B /* CustomDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6055FCB72529AEC80096A0FD /* CustomDropDown.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		17A2CBA02548DE4800A80D82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6055FCAE2529AEC80096A0FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6055FCB62529AEC80096A0FD;
+			remoteInfo = CustomDropDown;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		172E2C8925423DD3001F37B7 /* ViewCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		172E2C8D25423DE1001F37B7 /* DropDownDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDisplayView.swift; sourceTree = "<group>"; };
@@ -43,6 +60,14 @@
 		172E2CB5254254A5001F37B7 /* DropDownMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMode.swift; sourceTree = "<group>"; };
 		172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDataSource.swift; sourceTree = "<group>"; };
 		172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDelegate.swift; sourceTree = "<group>"; };
+		17A2CB9A2548DE4800A80D82 /* CustomDropDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomDropDownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		17A2CB9E2548DE4800A80D82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17A2CBAC2548DE6100A80D82 /* CustomDropDownDelegateAndDataSourceDummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownDelegateAndDataSourceDummy.swift; sourceTree = "<group>"; };
+		17A2CBAE2548DE6100A80D82 /* CustomDropDownPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownPresenterTests.swift; sourceTree = "<group>"; };
+		17A2CBB02548DE6100A80D82 /* DropDownImageLabelViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownImageLabelViewTests.swift; sourceTree = "<group>"; };
+		17A2CBB12548DE6100A80D82 /* DropDownDisplayViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownDisplayViewTests.swift; sourceTree = "<group>"; };
+		17A2CBB22548DE6100A80D82 /* CustomDropDownViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownViewTests.swift; sourceTree = "<group>"; };
+		17A2CBB32548DE6100A80D82 /* CustomDropDownTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownTests.swift; sourceTree = "<group>"; };
 		27C2E8222547C93900D082CE /* ImageLabelStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelStyleViewController.swift; sourceTree = "<group>"; };
 		27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowAndCornerConfig.swift; sourceTree = "<group>"; };
@@ -62,6 +87,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		17A2CB972548DE4800A80D82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A2CB9F2548DE4800A80D82 /* CustomDropDown.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6055FCB42529AEC80096A0FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,11 +152,50 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		17A2CB9B2548DE4800A80D82 /* CustomDropDownTests */ = {
+			isa = PBXGroup;
+			children = (
+				17A2CB9E2548DE4800A80D82 /* Info.plist */,
+				17A2CBAB2548DE6100A80D82 /* Helpers */,
+				17A2CBAD2548DE6100A80D82 /* Presenter */,
+				17A2CBAF2548DE6100A80D82 /* View */,
+			);
+			path = CustomDropDownTests;
+			sourceTree = "<group>";
+		};
+		17A2CBAB2548DE6100A80D82 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				17A2CBAC2548DE6100A80D82 /* CustomDropDownDelegateAndDataSourceDummy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		17A2CBAD2548DE6100A80D82 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				17A2CBAE2548DE6100A80D82 /* CustomDropDownPresenterTests.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		17A2CBAF2548DE6100A80D82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17A2CBB32548DE6100A80D82 /* CustomDropDownTests.swift */,
+				17A2CBB22548DE6100A80D82 /* CustomDropDownViewTests.swift */,
+				17A2CBB12548DE6100A80D82 /* DropDownDisplayViewTests.swift */,
+				17A2CBB02548DE6100A80D82 /* DropDownImageLabelViewTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6055FCAD2529AEC80096A0FD = {
 			isa = PBXGroup;
 			children = (
 				6055FCB92529AEC80096A0FD /* CustomDropDown */,
 				60A07340252F7F0E00861A46 /* Example */,
+				17A2CB9B2548DE4800A80D82 /* CustomDropDownTests */,
 				6055FCB82529AEC80096A0FD /* Products */,
 				60A95B372532CABE00222D5B /* Frameworks */,
 			);
@@ -134,6 +206,7 @@
 			children = (
 				6055FCB72529AEC80096A0FD /* CustomDropDown.framework */,
 				60A0733F252F7F0E00861A46 /* Example.app */,
+				17A2CB9A2548DE4800A80D82 /* CustomDropDownTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,6 +279,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		17A2CB992548DE4800A80D82 /* CustomDropDownTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17A2CBA42548DE4800A80D82 /* Build configuration list for PBXNativeTarget "CustomDropDownTests" */;
+			buildPhases = (
+				17A2CB962548DE4800A80D82 /* Sources */,
+				17A2CB972548DE4800A80D82 /* Frameworks */,
+				17A2CB982548DE4800A80D82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				17A2CBA12548DE4800A80D82 /* PBXTargetDependency */,
+			);
+			name = CustomDropDownTests;
+			productName = CustomDropDownTests;
+			productReference = 17A2CB9A2548DE4800A80D82 /* CustomDropDownTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6055FCB62529AEC80096A0FD /* CustomDropDown */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6055FCBF2529AEC80096A0FD /* Build configuration list for PBXNativeTarget "CustomDropDown" */;
@@ -247,10 +338,13 @@
 		6055FCAE2529AEC80096A0FD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Amirthy Tejeshwar";
 				TargetAttributes = {
+					17A2CB992548DE4800A80D82 = {
+						CreatedOnToolsVersion = 12.1;
+					};
 					6055FCB62529AEC80096A0FD = {
 						CreatedOnToolsVersion = 11.3.1;
 						LastSwiftMigration = 1200;
@@ -275,11 +369,19 @@
 			targets = (
 				6055FCB62529AEC80096A0FD /* CustomDropDown */,
 				60A0733E252F7F0E00861A46 /* Example */,
+				17A2CB992548DE4800A80D82 /* CustomDropDownTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		17A2CB982548DE4800A80D82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6055FCB52529AEC80096A0FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +402,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17A2CB962548DE4800A80D82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17A2CBB52548DE6100A80D82 /* CustomDropDownPresenterTests.swift in Sources */,
+				17A2CBB92548DE6100A80D82 /* CustomDropDownTests.swift in Sources */,
+				17A2CBB62548DE6100A80D82 /* DropDownImageLabelViewTests.swift in Sources */,
+				17A2CBB82548DE6100A80D82 /* CustomDropDownViewTests.swift in Sources */,
+				17A2CBB72548DE6100A80D82 /* DropDownDisplayViewTests.swift in Sources */,
+				17A2CBB42548DE6100A80D82 /* CustomDropDownDelegateAndDataSourceDummy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6055FCB32529AEC80096A0FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,6 +449,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		17A2CBA12548DE4800A80D82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6055FCB62529AEC80096A0FD /* CustomDropDown */;
+			targetProxy = 17A2CBA02548DE4800A80D82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		60A07347252F7F0E00861A46 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -354,6 +477,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		17A2CBA22548DE4800A80D82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9554U789HP;
+				INFOPLIST_FILE = CustomDropDownTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tejuamirthi.CustomDropDownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		17A2CBA32548DE4800A80D82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9554U789HP;
+				INFOPLIST_FILE = CustomDropDownTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tejuamirthi.CustomDropDownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		6055FCBD2529AEC80096A0FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -564,6 +727,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		17A2CBA42548DE4800A80D82 /* Build configuration list for PBXNativeTarget "CustomDropDownTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17A2CBA22548DE4800A80D82 /* Debug */,
+				17A2CBA32548DE4800A80D82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6055FCB12529AEC80096A0FD /* Build configuration list for PBXProject "CustomDropDown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
