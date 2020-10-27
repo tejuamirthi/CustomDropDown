@@ -17,6 +17,7 @@
 		172E2CB6254254A5001F37B7 /* DropDownMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CB5254254A5001F37B7 /* DropDownMode.swift */; };
 		172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */; };
 		172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */; };
+		27C2E8232547C93900D082CE /* ImageLabelStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C2E8222547C93900D082CE /* ImageLabelStyleViewController.swift */; };
 		27EDDDEA2546A17800DB0ECA /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */; };
 		3D469C3D2545DDFB00B2993A /* ShadowAndCornerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */; };
 		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; platformFilter = ios; };
@@ -24,7 +25,7 @@
 		6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; platformFilter = ios; };
 		60A07342252F7F0E00861A46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07341252F7F0E00861A46 /* AppDelegate.swift */; };
 		60A07344252F7F0E00861A46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07343252F7F0E00861A46 /* SceneDelegate.swift */; };
-		60A07346252F7F0E00861A46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07345252F7F0E00861A46 /* ViewController.swift */; };
+		60A07346252F7F0E00861A46 /* LabelStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07345252F7F0E00861A46 /* LabelStyleViewController.swift */; };
 		60A07349252F7F0E00861A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A07347252F7F0E00861A46 /* Main.storyboard */; };
 		60A0734B252F7F1100861A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60A0734A252F7F1100861A46 /* Assets.xcassets */; };
 		60A0734E252F7F1100861A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60A0734C252F7F1100861A46 /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		172E2CB5254254A5001F37B7 /* DropDownMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMode.swift; sourceTree = "<group>"; };
 		172E2CBE25425537001F37B7 /* CustomDropDownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDataSource.swift; sourceTree = "<group>"; };
 		172E2CC22542556A001F37B7 /* CustomDropDownDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownDelegate.swift; sourceTree = "<group>"; };
+		27C2E8222547C93900D082CE /* ImageLabelStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelStyleViewController.swift; sourceTree = "<group>"; };
 		27EDDDE92546A17800DB0ECA /* UIWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		3D469C3C2545DDFB00B2993A /* ShadowAndCornerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowAndCornerConfig.swift; sourceTree = "<group>"; };
 		600DFEAA2529BA4200206E64 /* CustomDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDown.swift; sourceTree = "<group>"; };
@@ -52,7 +54,7 @@
 		60A0733F252F7F0E00861A46 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A07341252F7F0E00861A46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60A07343252F7F0E00861A46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		60A07345252F7F0E00861A46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		60A07345252F7F0E00861A46 /* LabelStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStyleViewController.swift; sourceTree = "<group>"; };
 		60A07348252F7F0E00861A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60A0734A252F7F1100861A46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60A0734D252F7F1100861A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -171,9 +173,10 @@
 		60A07340252F7F0E00861A46 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				60A07345252F7F0E00861A46 /* LabelStyleViewController.swift */,
+				27C2E8222547C93900D082CE /* ImageLabelStyleViewController.swift */,
 				60A07341252F7F0E00861A46 /* AppDelegate.swift */,
 				60A07343252F7F0E00861A46 /* SceneDelegate.swift */,
-				60A07345252F7F0E00861A46 /* ViewController.swift */,
 				60A07347252F7F0E00861A46 /* Main.storyboard */,
 				60A0734A252F7F1100861A46 /* Assets.xcassets */,
 				60A0734C252F7F1100861A46 /* LaunchScreen.storyboard */,
@@ -322,7 +325,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60A07346252F7F0E00861A46 /* ViewController.swift in Sources */,
+				60A07346252F7F0E00861A46 /* LabelStyleViewController.swift in Sources */,
+				27C2E8232547C93900D082CE /* ImageLabelStyleViewController.swift in Sources */,
 				60A07342252F7F0E00861A46 /* AppDelegate.swift in Sources */,
 				60A07344252F7F0E00861A46 /* SceneDelegate.swift in Sources */,
 			);
