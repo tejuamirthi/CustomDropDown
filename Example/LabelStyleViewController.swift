@@ -9,13 +9,13 @@
 import UIKit
 import CustomDropDown
 
-class ViewController: UIViewController {
+class LabelStyleViewController: UIViewController {
 
     let items = ["Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemTeal
+        view.backgroundColor = .white
         let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
         let newView = ccp.getDropDownView()
         view.addSubview(newView)
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         newView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        newView.backgroundColor = .red
+        newView.backgroundColor = .darkGray
         // Do any additional setup after loading the view.
     }
 }
@@ -45,7 +45,8 @@ class ViewController: UIViewController {
 //    }
 //}
 
-extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+extension LabelStyleViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
         
     }
