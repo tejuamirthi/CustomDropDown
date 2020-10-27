@@ -221,22 +221,9 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UILabel") else {
             return UITableViewCell()
         }
-        
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.attributedText = NSAttributedString(string: presenter?.items[indexPath.row] as? String ?? "",
-                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-        cell.contentView.addSubview(label)
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = presenter?.items[indexPath.row] as? String
         cell.contentView.backgroundColor = .gray
-        
-        label.addAnchors(top: cell.contentView.topAnchor,
-                         bottom: cell.contentView.bottomAnchor,
-                         left: cell.contentView.leftAnchor,
-                         right: cell.contentView.rightAnchor,
-                         padding: 16,
-                         widthConstraint: nil,
-                         heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
         return cell
     }
     
