@@ -102,10 +102,10 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     }
     
     private func resetDropDownConstraints() {
-        guard let dropDown = dropDown else { return }
+        guard let dropDown = dropDown, let superview = superview else { return }
         
-        superview?.addSubview(dropDown)
-        superview?.bringSubviewToFront(dropDown)
+        superview.addSubview(dropDown)
+        superview.bringSubviewToFront(dropDown)
         
         let dropDownLeftRightPadding: UIEdgeInsets = config.dropDownLeftRightPadding
         
