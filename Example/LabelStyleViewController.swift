@@ -9,7 +9,7 @@
 import UIKit
 import CustomDropDown
 
-class ViewController: UIViewController {
+class LabelStyleViewController: UIViewController {
 
     let items = ["first item", "second name", "third name", "fourth item", "fifth name", "sixth name", "seventh item", "eight name", "ninth name"]
     
@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD:Example/ViewController.swift
         view.backgroundColor = .systemTeal
         
         
@@ -36,6 +37,9 @@ class ViewController: UIViewController {
 //        newViewImage.backgroundColor = .orange
         
         
+=======
+        view.backgroundColor = .white
+>>>>>>> main:Example/LabelStyleViewController.swift
         let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
         let newView = ccp.getDropDownView()
         view.addSubview(newView)
@@ -50,11 +54,37 @@ class ViewController: UIViewController {
         newView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         newView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         newView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+<<<<<<< HEAD:Example/ViewController.swift
         newView.backgroundColor = .red
     }
 }
 
 extension ViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+=======
+        newView.backgroundColor = .darkGray
+        // Do any additional setup after loading the view.
+    }
+}
+
+//extension ViewController: UITableViewDataSource, UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        items.count
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell()
+//        let label = UILabel()
+//        label.attributedText = NSAttributedString(string: items[indexPath.row], attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+//        cell.contentView.addSubview(label)
+//        cell.contentView.backgroundColor = .gray
+//        label.addAnchors(top: cell.contentView.topAnchor, bottom: cell.contentView.bottomAnchor, left: cell.contentView.leftAnchor, right: cell.contentView.rightAnchor, padding: 8, widthConstraint: nil, heightConstraint: label.heightAnchor.constraint(greaterThanOrEqualToConstant: 32))
+//        return cell
+//    }
+//}
+
+extension LabelStyleViewController: CustomDropDownDelegate, CustomDropDownDataSource {
+    
+>>>>>>> main:Example/LabelStyleViewController.swift
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
         
     }
