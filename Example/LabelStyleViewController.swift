@@ -5,13 +5,12 @@
 //  Created by Amirthy Tejeshwar on 08/10/20.
 //  Copyright © 2020 Amirthy Tejeshwar. All rights reserved.
 //
-
 import UIKit
 import CustomDropDown
 
 class LabelStyleViewController: UIViewController {
 
-    let items = ["Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name"]
+    let items = ["Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +43,6 @@ class LabelStyleViewController: UIViewController {
 //        return cell
 //    }
 //}
-
 extension LabelStyleViewController: CustomDropDownDelegate, CustomDropDownDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
