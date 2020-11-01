@@ -23,6 +23,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     var dropDownDisplayView: UIView!
     var heightConstraint: NSLayoutConstraint = NSLayoutConstraint()
     var isOpen: Bool = false
+    var guestureIdentifierBool: Bool = true
     var identifier: Int
     var outsideGesture: UITapGestureRecognizer?
     
@@ -124,8 +125,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     private func toggleDropDown() {
         if isOpen {
             closeDropDown()
-        } else {
+        } else if guestureIdentifierBool {
             openDropDown()
+        } else {
+            // need this to handle and check tapgesture on the display view
+            guestureIdentifierBool = true
         }
     }
     
@@ -149,6 +153,10 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         animateDropDown(animations: {
             dropDown.center.y -= dropDown.frame.height/2
             dropDown.layoutIfNeeded()
+        })
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05, execute: {
+            // need this to handle outside tap gesture (dropdown takes two taps to open if not handled here)
+            self.guestureIdentifierBool = true
         })
     }
     
@@ -198,6 +206,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         let tapOutsiteOfDropDown = (location.x < 0 || location.y < 0 || location.x > wh.w || location.y > wh.h)
         if isOpen && tapOutsiteOfDropDown {
             closeDropDown()
+            guestureIdentifierBool = false
         }
     }
     
