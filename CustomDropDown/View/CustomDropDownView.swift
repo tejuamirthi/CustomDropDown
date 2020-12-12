@@ -25,6 +25,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     var isOpen: Bool = false
     var identifier: Int
     var outsideGesture: UITapGestureRecognizer?
+    var insideTapGesture: UITapGestureRecognizer?
     
     // MARK: - Life cycle
     
@@ -67,17 +68,6 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         resetDropDownConstraints()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //location is relative to the current view
-        // do something with the touched point
-        super.touchesBegan(touches, with: event)
-        toggleDropDown()
-    }
-    
-    func getDisplayView() {
-        return
-    }
-    
     // MARK: - DropDown
     
     private func setupDropDownDisplayView() {
@@ -87,6 +77,14 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
             let tag = config.selectedLabelTag
             dropDownDisplayView = DropDownDisplayView(tag: tag)
         }
+        
+        self.insideTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleDropDown(_:)))
+        dropDownDisplayView.addGestureRecognizer(insideTapGesture!)
+        insideTapGesture?.delegate = self
+    }
+    
+    @objc func toggleDropDown(_ gestureRecognizer: UITapGestureRecognizer) {
+        toggleDropDown()
     }
     
     private func setupDropDown() {
@@ -230,7 +228,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     // MARK: UIGestureRecognizerDelegate methods
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        return !((gestureRecognizer == insideTapGesture && otherGestureRecognizer == outsideGesture) || (gestureRecognizer == outsideGesture && otherGestureRecognizer == insideTapGesture))
     }
     
     // MARK: - UITableViewDataSource
