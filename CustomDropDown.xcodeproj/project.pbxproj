@@ -23,6 +23,7 @@
 		600DFEAB2529BA4200206E64 /* CustomDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600DFEAA2529BA4200206E64 /* CustomDropDown.swift */; platformFilter = ios; };
 		6055FCBC2529AEC80096A0FD /* CustomDropDown.h in Headers */ = {isa = PBXBuildFile; fileRef = 6055FCBA2529AEC80096A0FD /* CustomDropDown.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6055FCDA2529BF290096A0FD /* CustomDropDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */; platformFilter = ios; };
+		609995782585379D007C7FAA /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609995772585379D007C7FAA /* MultiSelectionView.swift */; };
 		609B76A825813DC4009D0849 /* MultiSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609B76A725813DC4009D0849 /* MultiSelectViewController.swift */; };
 		60A07342252F7F0E00861A46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07341252F7F0E00861A46 /* AppDelegate.swift */; };
 		60A07344252F7F0E00861A46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A07343252F7F0E00861A46 /* SceneDelegate.swift */; };
@@ -53,6 +54,7 @@
 		6055FCBA2529AEC80096A0FD /* CustomDropDown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomDropDown.h; sourceTree = "<group>"; };
 		6055FCBB2529AEC80096A0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6055FCD92529BF290096A0FD /* CustomDropDownPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropDownPresenter.swift; sourceTree = "<group>"; };
+		609995772585379D007C7FAA /* MultiSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
 		609B76A725813DC4009D0849 /* MultiSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectViewController.swift; sourceTree = "<group>"; };
 		60A0733F252F7F0E00861A46 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60A07341252F7F0E00861A46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				172E2C8D25423DE1001F37B7 /* DropDownDisplayView.swift */,
 				172E2C9325423F7B001F37B7 /* DropDownImageLabelView.swift */,
 				60D51172254AF6B40059A721 /* DropDownMultiSelectView.swift */,
+				609995772585379D007C7FAA /* MultiSelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				172E2CC32542556A001F37B7 /* CustomDropDownDelegate.swift in Sources */,
 				172E2CBF25425537001F37B7 /* CustomDropDownDataSource.swift in Sources */,
 				3D469C3D2545DDFB00B2993A /* ShadowAndCornerConfig.swift in Sources */,
+				609995782585379D007C7FAA /* MultiSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
