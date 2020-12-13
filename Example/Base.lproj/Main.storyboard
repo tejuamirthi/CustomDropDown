@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0tp-8A-gC2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0tp-8A-gC2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,9 +16,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-Rr-ezi">
-                                <rect key="frame" x="24" y="85.5" width="366" height="97"/>
+                                <rect key="frame" x="24" y="85.5" width="366" height="154"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFx-Kb-vUs">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFx-Kb-vUs">
                                         <rect key="frame" x="0.0" y="0.0" width="366" height="40"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -33,7 +31,7 @@
                                             <segue destination="BYZ-38-t0r" kind="show" id="0qZ-nM-nwv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-be-HvP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyc-be-HvP">
                                         <rect key="frame" x="0.0" y="57" width="366" height="40"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -46,6 +44,19 @@
                                             <segue destination="IhB-4c-da0" kind="show" id="H6e-I8-Koc"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOh-Hd-wFB">
+                                        <rect key="frame" x="0.0" y="114" width="366" height="40"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="gNf-Sv-pHO"/>
+                                        </constraints>
+                                        <state key="normal" title="Multi Select">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="p9B-qw-4He" kind="push" id="SfU-J2-2gT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have this styles options to custom your own DropDown" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wc-H5-3H7">
@@ -55,8 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="hso-yO-E15"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WI3-Rr-ezi" firstAttribute="leading" secondItem="hso-yO-E15" secondAttribute="leading" constant="24" id="1md-gY-le3"/>
                             <constraint firstItem="hso-yO-E15" firstAttribute="trailing" secondItem="6wc-H5-3H7" secondAttribute="trailing" constant="24" id="MCF-Zf-DmT"/>
@@ -65,6 +75,7 @@
                             <constraint firstItem="6wc-H5-3H7" firstAttribute="top" secondItem="hso-yO-E15" secondAttribute="top" constant="24" id="qBd-9c-qEw"/>
                             <constraint firstItem="hso-yO-E15" firstAttribute="trailing" secondItem="WI3-Rr-ezi" secondAttribute="trailing" constant="24" id="qS7-tY-kKI"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="hso-yO-E15"/>
                     </view>
                     <navigationItem key="navigationItem" title="Custom DropDown Example" largeTitleDisplayMode="always" id="vgg-eG-7KP">
                         <barButtonItem key="backBarButtonItem" title=" " id="7z7-IJ-Qzc"/>
@@ -81,14 +92,14 @@
                     <view key="view" contentMode="scaleToFill" id="Ix1-At-vSU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="H0C-6V-AwP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="ImageLabel Style" id="6hY-ih-EMS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAA-yj-Pzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160.8695652173915" y="481.47321428571428"/>
+            <point key="canvasLocation" x="1161" y="770"/>
         </scene>
         <!--Label Style-->
         <scene sceneID="tne-QT-ifu">
@@ -97,14 +108,14 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Label Style" id="1EC-pH-OZX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160.8695652173915" y="-175.44642857142856"/>
+            <point key="canvasLocation" x="1161" y="-539"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CTZ-nh-ei5">
@@ -125,10 +136,21 @@
             </objects>
             <point key="canvasLocation" x="-581.15942028985512" y="112.5"/>
         </scene>
+        <!--Label Style-->
+        <scene sceneID="Jj6-yf-dCu">
+            <objects>
+                <viewController id="p9B-qw-4He" customClass="MultiSelectViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iii-zS-Hhm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RQu-Ec-Xw0"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Label Style" id="ClO-Jd-Vpw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6A-g4-dzX" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="113"/>
+        </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

@@ -11,18 +11,13 @@ import CustomDropDown
 
 class MultiSelectViewController: UIViewController {
 
-    let items = ["Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.", "second name", "third name"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         let items = [
             MultiSelectData(title: "Go hard", isSelected: false),
             MultiSelectData(title: "Go home", isSelected: true),
-            MultiSelectData(title: "Try again", isSelected: true),
-            MultiSelectData(title: "Go hard", isSelected: false),
-            MultiSelectData(title: "Go home", isSelected: false),
-            MultiSelectData(title: "Try again", isSelected: false)
+            MultiSelectData(title: "Try again", isSelected: true)
         ]
         
         let ccp = CustomDropDownPresenter(items: items, delegate: self)
