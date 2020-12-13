@@ -17,3 +17,18 @@ public struct ImageLabelData {
         self.image = image
     }
 }
+
+
+public class MultiSelectData {
+    public var title: String?
+    public var isSelected: Bool?
+    
+    public init(title: String?, isSelected: Bool?) {
+        self.title = title
+        self.isSelected = isSelected
+    }
+    
+    func equal(val: MultiSelectData?) -> Bool {
+        return self.title == val?.title
+    }
+}

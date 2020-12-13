@@ -33,7 +33,7 @@ class ImageLabelStyleViewController: UIViewController {
 }
 
 extension ImageLabelStyleViewController: CustomDropDownDelegate, CustomDropDownDataSource {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any, identifier: Int) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath, data: Any?, identifier: Int) {
         
     }
     

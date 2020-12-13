@@ -54,6 +54,7 @@ class CustomDropDown<T>: UIView {
     private func registerCells() {
         tableView.register(DropDownImageLabelView.self, forCellReuseIdentifier: DropDownImageLabelView.reuseIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UILabel")
+        tableView.register(DropDownMultiSelectionView.self, forCellReuseIdentifier: "DropDownMultiSelectionView")
     }
 }
 
