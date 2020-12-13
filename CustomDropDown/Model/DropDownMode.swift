@@ -11,4 +11,6 @@ import Foundation
 public enum DropDownMode: Int, CaseIterable {
     case label
     case imageLabel
+    case multiSelect
+    case custom
 }

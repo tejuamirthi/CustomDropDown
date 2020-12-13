@@ -49,13 +49,6 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         
         self.config = config
         
-        if T.self == ImageLabelData.self {
-            self.config.dropDownMode = .imageLabel
-        } else if T.self == String.self {
-            self.config.dropDownMode = .label
-        } else {
-            fatalError("not supported item tyoe")
-        }
     }
     
     override func didMoveToSuperview() {
@@ -71,9 +64,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     // MARK: - DropDown
     
     private func setupDropDownDisplayView() {
-        if let view = presenter?.datasource?.overrideDropDownView(identifier: identifier) {
+        if config.dropDownMode == .custom, let view = presenter?.datasource?.overrideDropDownView(identifier: identifier) {
             dropDownDisplayView = view
-        } else{
+        } else if config.dropDownMode == .multiSelect {
+            dropDownDisplayView = MultiSelectDisplayView(tag: 1, dropDownView: self as? CustomDropDownView<MultiSelectData>)
+        } else {
             let tag = config.selectedLabelTag
             dropDownDisplayView = DropDownDisplayView(tag: tag)
         }
@@ -214,6 +209,16 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         return cell
     }
 
+    private func getMultiSelectCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMultiSelectionView.reuseIdentifier) as? DropDownMultiSelectionView,
+              let items = presenter?.items as? [MultiSelectData] else {
+            return UITableViewCell()
+        }
+        
+        cell.setup(item: items[indexPath.row])
+        cell.selectionStyle = .none
+        return cell
+    }
     
     private func getStringLabelCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "UILabel") else {
@@ -241,12 +246,18 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath, identifier: identifier) {
-            return cell
-        } else if config.dropDownMode == .label {
+        switch config.dropDownMode {
+        case .label:
             return getStringLabelCell(tableView: tableView, indexPath: indexPath)
-        } else {
+        case .imageLabel:
             return getImageLabelCell(tableView: tableView, indexPath: indexPath)
+        case .multiSelect:
+            return getMultiSelectCell(tableView: tableView, indexPath: indexPath)
+        case .custom:
+            if let cell = presenter?.datasource?.tableView(tableView, cellForRowAt: indexPath, identifier: identifier) {
+                return cell
+            }
+            return UITableViewCell()
         }
     }
     
@@ -272,15 +283,41 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let presenter = self.presenter else {
-            return
-        }
-        
-        presenter.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, config: config, data: presenter.items[indexPath.row], identifier: identifier)
-        
-        
         if config.dropDownCollapsable {
             toggleDropDown()
+        }
+        presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, data: presenter?.items[indexPath.row], identifier: identifier)
+        switch config.dropDownMode {
+        case .multiSelect:
+            guard let multiSelectDisplayView = dropDownDisplayView as? MultiSelectDisplayView, let items = presenter?.items as? [MultiSelectData] else {
+                return
+            }
+            items[indexPath.row].isSelected?.toggle()
+//                multiSelectDisplayView.selectedValues.remove(at: index)
+            multiSelectDisplayView.reloadItems()
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+//            (tableView.cellForRow(at: indexPath) as? DropDownMultiSelectionView)?.didSelect(tableView: tableView, indexPath: indexPath)
+        case .imageLabel:
+            setSelectedLabelText(text: (presenter?.items[indexPath.row] as? ImageLabelData)?.title)
+        case .label:
+            setSelectedLabelText(text: presenter?.items[indexPath.row] as? String)
+        default:
+            presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, data: presenter?.items[indexPath.row], identifier: identifier)
+        }
+    }
+    
+    func didSelectDisplayView(data: MultiSelectData) {
+        let index = presenter?.items.firstIndex { (value) -> Bool in
+            data.equal(val: value as? MultiSelectData)
+        }
+        if let indexValue = index {
+            dropDown?.tableView.reloadRows(at: [IndexPath(row: indexValue, section: 0)], with: .automatic)
+        }
+    }
+    
+    func setSelectedLabelText(text: String?) {
+        if let label = dropDownDisplayView.viewWithTag(config.selectedLabelTag) as? UILabel {
+            label.text = text
         }
     }
 }
