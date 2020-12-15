@@ -27,6 +27,7 @@ Then, You need to add `CustomDropDown.framework` to your project.
 # Basic
 For basic usage please refer to the [Example project](https://github.com/tejuamirthi/CustomDropDown/tree/main/Example)
 
+<img src="sample.gif" width = "230px" height = "500px"/>
 
 
 # Contributing
