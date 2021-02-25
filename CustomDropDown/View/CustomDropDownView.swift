@@ -327,7 +327,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            (tableView.cellForRow(at: indexPath) as? DropDownMultiSelectionView)?.didSelect(tableView: tableView, indexPath: indexPath)
         case .imageLabel:
-            setSelectedLabelText(text: (presenter?.items[indexPath.row] as? ImageLabelData)?.title)
+//            setSelectedLabelText(text: (presenter?.items[indexPath.row] as? ImageLabelData)?.title)
+            
+            if let validTitle = (presenter?.items[indexPath.row] as? ImageLabelData)?.title, let validImage = (presenter?.items[indexPath.row] as? ImageLabelData)?.image {
+                setSelectedLabelText(text: validTitle, image: validImage)
+            }
+        
         case .label:
             setSelectedLabelText(text: presenter?.items[indexPath.row] as? String)
         default:
@@ -349,9 +354,28 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         }
     }
     
-    func setSelectedLabelText(text: String?) {
-        if let label = dropDownDisplayView.viewWithTag(config.selectedLabelTag) as? UILabel {
-            label.text = text
+    func setSelectedLabelText(text: String?, image: UIImage?=nil) {
+        if let stackView = dropDownDisplayView.viewWithTag(config.selectedLabelTag) as? UIStackView {
+            let arrangedViews = stackView.arrangedSubviews
+            
+            for view in arrangedViews {
+                switch view.tag {
+                case 1111:
+                    let labelView = view as? UILabel
+                    if let validLabel = labelView {
+                        validLabel.text = text
+                    }
+                case 2222:
+                    let imageView = view as? UIImageView
+                    if let validImage = imageView {
+                        validImage.image = image
+                    }
+                default:
+                    print("not valid tag")
+                }
+
+            }
+
         }
     }
 }

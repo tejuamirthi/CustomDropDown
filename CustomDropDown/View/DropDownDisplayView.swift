@@ -23,7 +23,20 @@ public class DropDownDisplayView: UIView {
         view.attributedText = NSAttributedString(string: "Select-hello",
                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)])
+        view.tag = 1111
         return view
+    }()
+    
+    lazy open var image: UIImageView = {
+        let image = UIImageView()
+        image.tag = 2222
+        return image
+    }()
+
+    lazy open var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [self.image, self.title])
+        stackView.distribution = .fillProportionally
+       return stackView
     }()
     
     // MARK: - Life cycle
@@ -42,7 +55,8 @@ public class DropDownDisplayView: UIView {
     // MARK: - Functions
     
     private func setupTitle(with tag: Int) {
-        title.tag = tag
+//        title.tag = tag
+        stackView.tag = tag
     }
 }
 
@@ -50,11 +64,11 @@ public class DropDownDisplayView: UIView {
 
 extension DropDownDisplayView: ViewCode {
     func buildViewHierarchy() {
-        addSubview(title)
+        addSubview(stackView)
     }
     
     func setupConstraints() {
-        title.addAnchors(top: topAnchor,
+        stackView.addAnchors(top: topAnchor,
                          bottom: bottomAnchor,
                          left: leftAnchor,
                          right: rightAnchor,
