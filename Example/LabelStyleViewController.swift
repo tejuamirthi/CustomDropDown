@@ -15,7 +15,7 @@ class LabelStyleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
+        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self, listColor: .cyan, selectedColor: .yellow)
         let newView = ccp.getDropDownView()
         view.addSubview(newView)
         newView.translatesAutoresizingMaskIntoConstraints = false

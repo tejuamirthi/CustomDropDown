@@ -28,11 +28,20 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     var outsideGesture: UITapGestureRecognizer?
     var insideTapGesture: UITapGestureRecognizer?
     
+    var selectedCellIndex = ""
+    var listColor: UIColor = .lightGray
+    var selectedColor: UIColor = .red
+    
     // MARK: - Life cycle
     
-    init(delegate: CustomDropDownPresenter<T>, identifier: Int) {
+    init(delegate: CustomDropDownPresenter<T>, identifier: Int, listColor: UIColor?=nil, selectedColor: UIColor?=nil) {
         self.identifier = identifier
         self.presenter = delegate
+        if let colorList = listColor, let colorSelected = selectedColor {
+            self.listColor = colorList
+            self.selectedColor = colorSelected
+
+        }
         super.init(frame: .zero)
         
         setConfig()
@@ -215,6 +224,12 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
                    title: items[indexPath.row].title,
                    lines: 0)
         
+        if selectedCellIndex == "\(indexPath.row)" {
+            cell.backgroundColor = selectedColor
+        } else {
+            cell.backgroundColor = listColor
+        }
+        
         return cell
     }
 
@@ -235,7 +250,13 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         }
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = presenter?.items[indexPath.row] as? String
-        cell.contentView.backgroundColor = .gray
+//        cell.contentView.backgroundColor = .gray
+        if selectedCellIndex == "\(indexPath.row)" {
+            cell.backgroundColor = selectedColor
+        } else {
+            cell.backgroundColor = listColor
+        }
+        
         return cell
     }
     
@@ -292,9 +313,8 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if config.dropDownCollapsable {
-            toggleDropDown()
-        }
+        selectedCellIndex = "\(indexPath.row)"
+
         presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, data: presenter?.items[indexPath.row], identifier: identifier)
         switch config.dropDownMode {
         case .multiSelect:
@@ -312,6 +332,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
             setSelectedLabelText(text: presenter?.items[indexPath.row] as? String)
         default:
             presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, data: presenter?.items[indexPath.row], identifier: identifier)
+        }
+        
+        if config.dropDownCollapsable {
+            toggleDropDown()
+            tableView.reloadData()
         }
     }
     
