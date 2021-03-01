@@ -28,20 +28,15 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     var outsideGesture: UITapGestureRecognizer?
     var insideTapGesture: UITapGestureRecognizer?
     
-    var selectedCellIndex = ""
-    var listColor: UIColor = .lightGray
-    var selectedColor: UIColor = .red
+    var selectedCellIndex: Int? = nil
+    var listColor: UIColor = .white
+    var selectedColor: UIColor? = nil
     
     // MARK: - Life cycle
     
-    init(delegate: CustomDropDownPresenter<T>, identifier: Int, listColor: UIColor?=nil, selectedColor: UIColor?=nil) {
+    init(delegate: CustomDropDownPresenter<T>, identifier: Int) {
         self.identifier = identifier
         self.presenter = delegate
-        if let colorList = listColor, let colorSelected = selectedColor {
-            self.listColor = colorList
-            self.selectedColor = colorSelected
-
-        }
         super.init(frame: .zero)
         
         setConfig()
@@ -58,12 +53,18 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         guard let config = self.presenter?.datasource?.config(identifier: identifier) else { return }
         
         self.config = config
+        if let validBackground = self.config.backgroundColor {
+            listColor = validBackground
+        }
+        if let validSelectedColor = self.config.selectedColor {
+            selectedColor = validSelectedColor
+        }
         
     }
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-
+        
         if let view = self.superview?.viewWithTag(config.dropDownTag) {
             view.removeFromSuperview()
         }
@@ -95,7 +96,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     private func setupDropDown() {
         dropDown = CustomDropDown<T>(dropDownView: self, tag: config.dropDownTag)
         dropDown?.translatesAutoresizingMaskIntoConstraints = false
-
+        
         dropDown?.cornerRadius = config.shadowAndCornerConfig.cornerRadius
         
         dropDown?.layer.shadowColor = config.shadowAndCornerConfig.shadowColor
@@ -224,7 +225,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
                    title: items[indexPath.row].title,
                    lines: 0)
         
-        if selectedCellIndex == "\(indexPath.row)" {
+        if selectedCellIndex == indexPath.row {
             cell.backgroundColor = selectedColor
         } else {
             cell.backgroundColor = listColor
@@ -232,7 +233,7 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         
         return cell
     }
-
+    
     private func getMultiSelectCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DropDownMultiSelectionView.reuseIdentifier) as? DropDownMultiSelectionView,
               let items = presenter?.items as? [MultiSelectData] else {
@@ -250,8 +251,8 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
         }
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = presenter?.items[indexPath.row] as? String
-//        cell.contentView.backgroundColor = .gray
-        if selectedCellIndex == "\(indexPath.row)" {
+        
+        if selectedCellIndex == indexPath.row {
             cell.backgroundColor = selectedColor
         } else {
             cell.backgroundColor = listColor
@@ -313,8 +314,11 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCellIndex = "\(indexPath.row)"
-
+        
+        if config.dropDownCollapsable {
+            toggleDropDown()
+        }
+        
         presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, data: presenter?.items[indexPath.row], identifier: identifier)
         switch config.dropDownMode {
         case .multiSelect:
@@ -322,27 +326,28 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
                 return
             }
             items[indexPath.row].isSelected?.toggle()
-//                multiSelectDisplayView.selectedValues.remove(at: index)
+            //                multiSelectDisplayView.selectedValues.remove(at: index)
             multiSelectDisplayView.reloadItems()
             tableView.reloadRows(at: [indexPath], with: .automatic)
-//            (tableView.cellForRow(at: indexPath) as? DropDownMultiSelectionView)?.didSelect(tableView: tableView, indexPath: indexPath)
+        //            (tableView.cellForRow(at: indexPath) as? DropDownMultiSelectionView)?.didSelect(tableView: tableView, indexPath: indexPath)
         case .imageLabel:
-//            setSelectedLabelText(text: (presenter?.items[indexPath.row] as? ImageLabelData)?.title)
-            
             if let validTitle = (presenter?.items[indexPath.row] as? ImageLabelData)?.title, let validImage = (presenter?.items[indexPath.row] as? ImageLabelData)?.image {
                 setSelectedLabelText(text: validTitle, image: validImage)
             }
-        
         case .label:
             setSelectedLabelText(text: presenter?.items[indexPath.row] as? String)
+            
         default:
             presenter?.delegate?.tableView(tableView, didSelectRowAt: indexPath, displayView: dropDownDisplayView, data: presenter?.items[indexPath.row], identifier: identifier)
         }
         
-        if config.dropDownCollapsable {
-            toggleDropDown()
-            tableView.reloadData()
+        let previousIndex = selectedCellIndex
+        selectedCellIndex = indexPath.row
+        
+        if let validIndex = previousIndex {
+            tableView.reloadRows(at: [IndexPath(row: validIndex, section: 0)], with: .automatic)
         }
+        tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
     }
     
     func didSelectDisplayView(data: MultiSelectData) {
@@ -373,9 +378,9 @@ class CustomDropDownView<T>: UIView, UITableViewDataSource, UITableViewDelegate,
                 default:
                     print("not valid tag")
                 }
-
+                
             }
-
+            
         }
     }
 }

@@ -30,6 +30,7 @@ public class DropDownDisplayView: UIView {
     lazy open var image: UIImageView = {
         let image = UIImageView()
         image.tag = 2222
+        image.contentMode = .scaleAspectFit
         return image
     }()
 
@@ -55,7 +56,6 @@ public class DropDownDisplayView: UIView {
     // MARK: - Functions
     
     private func setupTitle(with tag: Int) {
-//        title.tag = tag
         stackView.tag = tag
     }
 }

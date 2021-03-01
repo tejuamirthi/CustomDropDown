@@ -23,14 +23,14 @@ public class CustomDropDownPresenter<T>: NSObject {
     
     // MARK: - Life cycle
     
-    public init(items: [T], delegate: CustomDropDownDelegate?, identifier: Int = 0, listColor: UIColor?=nil, selectedColor: UIColor?=nil) {
+    public init(items: [T], delegate: CustomDropDownDelegate?, identifier: Int = 0) {
         self.items = items
         super.init()
         
         self.delegate = delegate
         self.datasource = delegate as? CustomDropDownDataSource
         
-        dropDown = CustomDropDownView(delegate: self, identifier: identifier, listColor: listColor, selectedColor: selectedColor)
+        dropDown = CustomDropDownView(delegate: self, identifier: identifier)
     }
     
     public func getDropDownView() -> UIView {

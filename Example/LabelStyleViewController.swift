@@ -15,7 +15,7 @@ class LabelStyleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self, listColor: .cyan, selectedColor: .yellow)
+        let ccp = CustomDropDownPresenter<String>(items: items, delegate: self)
         let newView = ccp.getDropDownView()
         view.addSubview(newView)
         newView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,8 @@ extension LabelStyleViewController: CustomDropDownDelegate, CustomDropDownDataSo
     
     func config(identifier: Int) -> DropDownConfig {
         var config = DropDownConfig()
-        
+        config.backgroundColor = .gray
+        config.selectedColor = .orange
         var shadowAndCornerConfig = ShadowAndCornerConfig()
         shadowAndCornerConfig.shadowOffset = CGSize(width: 5, height: 5)
         shadowAndCornerConfig.shadowOpacity = 0.8
