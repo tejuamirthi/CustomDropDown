@@ -39,7 +39,6 @@ extension ImageLabelStyleViewController: CustomDropDownDelegate, CustomDropDownD
     
     func config(identifier: Int) -> DropDownConfig {
         var config = DropDownConfig()
-        
         config.dropDownMode = .imageLabel
         var shadowAndCornerConfig = ShadowAndCornerConfig()
         shadowAndCornerConfig.shadowOffset = CGSize(width: 5, height: 5)

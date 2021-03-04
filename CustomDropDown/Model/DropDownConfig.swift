@@ -16,6 +16,8 @@ public struct DropDownConfig {
     public var dropDownMode: DropDownMode = .label
     public var dropDownCollapsable: Bool = true
     public var shadowAndCornerConfig: ShadowAndCornerConfig = ShadowAndCornerConfig()
+    public var backgroundColor: UIColor?
+    public var selectedColor: UIColor? 
     
     public init() {}
 }
