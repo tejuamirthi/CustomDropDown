@@ -23,7 +23,7 @@ class DropDownImageLabelView: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.attributedText = NSAttributedString(string: "",
+        view.attributedText = NSAttributedString(string: "_",
                                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,
                                                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)])
         return view
