@@ -28,7 +28,6 @@ Then, You need to add `CustomDropDown.framework` to your project.
 For basic usage please refer to the [Example project](https://github.com/tejuamirthi/CustomDropDown/tree/main/Example)
 
 
-
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Work on `good-first-issue` to contribute right away. 
 
